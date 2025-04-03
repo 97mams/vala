@@ -1,4 +1,16 @@
 {
+    "name": "mams/php",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "mams97",
+            "email": "anjaniainamamisoa@gmail.com"
+        }
+    ],
     "require": {
         "silex/silex": "^2.3"
     }
