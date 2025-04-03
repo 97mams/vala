@@ -1,7 +1,11 @@
 <?php
-include '../src/vue/layouts/header.php';
+$title = "project";
 
+ob_start();
+
+echo 'mety';
 echo $name;
 
-include '../src/vue/layouts/footer.php';
+$content = ob_get_clean();
+include '../src/vue/layouts/base.php';
 ?>

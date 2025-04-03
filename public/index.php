@@ -14,10 +14,7 @@ $app['debug'] = true;
 $app->get('/', function(Request $request)
  {
   $name = 'mamisoa';
-  ob_start();
-
-  
-  $name = ob_get_clean();
+ 
   require '../src/vue/page/index.php';
   return new Response();
   }
