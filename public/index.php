@@ -1,14 +1,26 @@
 <?php
-require_once '../vendor/autoload.php';
 
-use App\controller\testController;
+require "../vendor/autoload.php";
+
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mime\BodyRendererInterface;
 
 $app = new \Silex\Application();
 $app['debug'] = true;
 
-$test = $app['App\controller\testController'];
 
 
-$test->get('/hello',$test);
-$test->run();
+$app->get('/', function(Request $request)
+ {
+  $name = 'mamisoa';
+  ob_start();
+
+  
+  $name = ob_get_clean();
+  require '../src/vue/page/index.php';
+  return new Response();
+  }
+);
+$app->run();
+

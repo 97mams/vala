@@ -3,6 +3,7 @@
 namespace App\controller;
 
 use App\model\AnimalModel;
+use Silex\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
 class AnimalController

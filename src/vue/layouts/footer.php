@@ -1,4 +1,4 @@
-<script src="../assets/js/tailwind.js"></script>
+<script src="./tailwind.js"></script>
 
 </body>
 </html>
