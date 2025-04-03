@@ -2,6 +2,8 @@
 
 namespace App\entity;
 
+use DateTime;
+
 class Animal
 {
 
@@ -9,6 +11,7 @@ class Animal
   private ?string $genre;
   private ?string $type;
   private ?string $sexe;
+  private ?int $age;
 
   public function getName():string
   {
@@ -48,6 +51,16 @@ class Animal
   public function setSexe(string $sexe):void
   {
     $this->sexe = $sexe;
+  }
+
+  public function getAge():int
+  {
+    return $this->age;
+  }
+
+  public function setAge(int $age):void
+  {
+    $this->age = $age;
   }
 
 }
