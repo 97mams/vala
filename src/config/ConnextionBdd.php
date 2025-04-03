@@ -9,8 +9,7 @@ class ConnextionBdd
   private static string $pwd = '';
   private static string $user = 'root';
 
-  public function __construct(
-  ){}
+  public function __construct(){}
 
   public static function connect() 
   {
