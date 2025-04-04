@@ -11,7 +11,7 @@ ob_start();
     <table class="w-full border border-gray-300">
       <thead class="w-full border border-gray-300 bg-gray-200 font-bold">
         <tr>
-          <td>Nom</td>
+          <td class='pl-2'>Nom</td>
           <td>Genre</td>
           <td>Type</td>
           <td>sexe</td>
@@ -23,18 +23,36 @@ ob_start();
         <?php
           foreach ($animals as $animal) {
           echo "<tr> 
-             <td>".$animal['name']."</td>
-             <td>".$animal['genre']."</td>
-             <td>".$animal['type']."</td>
-             <td>".$animal['sexe']."</td>
-             <td>".$animal['age']."</td>
-             <td class='flex p-2 gap-2 '>
-             
-             <form action='/animal' method='delete'>
-                <input type='hidden' name='id' value=".$animal['id'].">
+            <td class='pl-2'>
+              <a href='/animal/".$animal['id']."'>
+                ".$animal['name']."
+              </a>
+             </td>
+            <td> 
+              <a href='/animal/".$animal['id']."'>
+                ".$animal['genre']."
+              </a>
+            </td>
+            <td>
+              <a href='/animal/".$animal['id']."'>
+                ".$animal['type']."
+              </a>
+            </td>
+            <td>
+              <a href='/animal/".$animal['id']."'>
+                ".$animal['sexe']."
+              </a>
+            </td>
+            <td>
+              <a href='/animal/".$animal['id']."'>
+                ".$animal['age']."
+              </a>
+            </td>
+            <td class='flex p-2 gap-2 '> 
+             <form action='/animal/{".$animal['id']."}' method='get'>
                 <input title='supprimer' type='submit' value='❌' class='px-2 bg-red-400 text-red-200 rounded cursor-pointer'>
               </form>
-              <form action='/animal' method='put'>
+              <form action='/animal/{".$animal['id']."}' method='get'>
                 <input type='hidden' name='id' value=".$animal['id'].">
                 <input title='modifier' type='submit' value='✔' class='px-2 bg-orange-400 text-orange-200 cursor-pointer rounded'>
               </form>
