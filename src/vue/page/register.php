@@ -34,7 +34,7 @@ ob_start();
        </select>   
      </div>
         
-      <input type="submit" value="Enregistrer" class="bg-blue-500 py-2 px-2 my-8 rounded text-white">
+      <input type="submit" value="Enregistrer" class="bg-blue-500 py-2 px-2 my-8 rounded text-white cursor-pointer">
     </form>
   </div>
 </div>
