@@ -3,8 +3,7 @@ $title = "project";
 
 ob_start();
 
-echo 'mety';
-echo $name;
+dd($animals);
 
 $content = ob_get_clean();
 include '../src/vue/layouts/base.php';

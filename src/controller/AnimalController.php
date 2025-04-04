@@ -14,8 +14,17 @@ class AnimalController
     $model = new AnimalModel();
     $animals = $model->getAnimals();
     $name = $animals->getName();
-
-    return new Response();
+    $genre = $animals->getGenre();
+    $type = $animals->getType();
+    $sexe = $animals->getSexe();
+    $age = $animals->getAge();
+    return [
+      'name' => $name,
+      'genre' => $genre,
+      'type' => $type,
+      'name' => $name,
+      'age' => $age,
+    ];
   }
 
 }
