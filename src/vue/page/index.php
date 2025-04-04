@@ -2,7 +2,7 @@
 
 use App\entity\Animal;
 
-$title = "project";
+$title = "liste";
 ob_start();
 ?>
 

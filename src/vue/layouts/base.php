@@ -1,3 +1,8 @@
+<?php
+
+$uri = $_SERVER['REQUEST_URI'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,8 +15,12 @@
 </head>
 <body>
 
-<div class=" w-full h-[50px] border-b border-gray-200 flex items-center sticky">
-  <h1 class="text-2xl font-bold ml-60">Fiompiana</h1>
+<div class=" w-full h-[50px] border-b border-gray-200 flex items-center justify-between sticky">
+  <h1 class="text-2xl font-bold ml-60">Fahitra</h1>
+  <ul class="flex gap-3 mr-60">
+    <li><a href="/" class="hover:underline <?php if($uri == '/') echo 'underline' ?>">liste</a></li>
+    <li><a href="/register" class="hover:underline <?php if($uri == '/register') echo 'underline' ?>">ajouter</a></li>
+  </ul>
 </div>
 <div class="w-full flex">
   <div class="w-md h-full"></div>
