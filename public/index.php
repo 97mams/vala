@@ -19,4 +19,19 @@ $app->get('/', function(Request $request)
   return new Response();
   }
 );
+
+
+$app->get('/register', function () 
+{
+  require '../src/vue/page/register.php';
+  return new Response();
+}
+);
+
+$app->post('/store', function(Request $request) 
+{
+  dd($request);
+}
+);
+
 $app->run();
