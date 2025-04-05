@@ -11,12 +11,12 @@ ob_start();
     <table class="w-full border border-gray-300">
       <thead class="w-full border border-gray-300 bg-gray-200 font-bold">
         <tr>
-          <td class='pl-2'>Nom</td>
-          <td>Genre</td>
-          <td>Type</td>
-          <td>sexe</td>
-          <td>age</td>
-          <td>action</td>
+          <td class='pl-2'><span class="text-gray-400">#</span> Nom</td>
+          <td><span class="text-gray-400">#</span> Genre</td>
+          <td><span class="text-gray-400">#</span> Type</td>
+          <td><span class="text-gray-400">#</span> sexe</td>
+          <td><span class="text-gray-400">#</span> age</td>
+          <td><span class="text-gray-400">#</span> Action</td>
         </tr>
       </thead>
       <tbody>
