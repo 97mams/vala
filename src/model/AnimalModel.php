@@ -28,17 +28,23 @@ class AnimalModel
 
   public function store($request):bool
   {
-     try {
-      $name = $request->get('name');
-      $genre = $request->get('genre');
-      $type = $request->get('type');
-      $sexe = $request->get('sexe');
-      $age = $request->get('age');
-      $db = ConnextionBdd::connect();
-      $db->query("INSERT INTO animale (name, genre, type, sexe, age) Values('".$name."', '".$genre."', '".$type."', '".$sexe."', ".$age.")");
+    $name = $request->get('name');
+    $genre = $request->get('genre');
+    $type = $request->get('type');
+    $sexe = $request->get('sexe');
+    $age = $request->get('age');
+    $db = ConnextionBdd::connect();
+    $b = $db->query('INSERT INTO animale (name, genre, type, sexe, age) Values("'.$name.'", "'.$genre.'", "'.$type.'", "'.$sexe.'", '.$age.')');
+    try {
       return true;
-  } catch (\Throwable $th) {
+    } catch (\Throwable $th) {
       return false;
      }
+  }
+
+  public function delete($id)
+  {
+    $db = ConnextionBdd::connect();
+    $query = $db->query("DELETE FROM animale where id = ".(int)$id );
   }
 }
