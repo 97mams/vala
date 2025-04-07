@@ -1,7 +1,5 @@
 <?php
 
-use App\entity\Animal;
-
 $title = "liste";
 ob_start();
 ?>
@@ -49,12 +47,10 @@ ob_start();
               </a>
             </td>
             <td class='flex p-2 gap-2 '> 
-             <form action='/animal/{".$animal['id']."}' method='get'>
+            <a href='/edit/animal/".$animal['id']."' class='px-2 bg-orange-400 text-orange-200 cursor-pointer rounded'>✔</a>
+             <form action='/animal'  method='post'>
+                <input type='hidden' value='".$animal['id']."}' name='id'>
                 <input title='supprimer' type='submit' value='❌' class='px-2 bg-red-400 text-red-200 rounded cursor-pointer'>
-              </form>
-              <form action='/animal/{".$animal['id']."}' method='get'>
-                <input type='hidden' name='id' value=".$animal['id'].">
-                <input title='modifier' type='submit' value='✔' class='px-2 bg-orange-400 text-orange-200 cursor-pointer rounded'>
               </form>
              </td>
             </tr>";
@@ -63,7 +59,6 @@ ob_start();
       </tbody>
     </table>
 </div>
-
 <?php
 $content = ob_get_clean();
 include '../src/vue/layouts/base.php';
