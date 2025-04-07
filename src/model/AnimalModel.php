@@ -21,7 +21,7 @@ class AnimalModel
   public function getAnimal(int $id)
   {
     $db = ConnextionBdd::connect();
-    $query = $db->query("SELECT * from animale where id=".$id );
+    $query = $db->query("SELECT * from animale where id_animale=".$id );
 
     return $query->fetch();
   }
@@ -31,11 +31,11 @@ class AnimalModel
     $name = $request->get('name');
     $genre = $request->get('genre');
     $type = $request->get('type');
-    $sexe = $request->get('sexe');
+    $traitement = $request->get('traitement');
     $age = $request->get('age');
-    $db = ConnextionBdd::connect();
-    $b = $db->query('INSERT INTO animale (name, genre, type, sexe, age) Values("'.$name.'", "'.$genre.'", "'.$type.'", "'.$sexe.'", '.$age.')');
     try {
+    $db = ConnextionBdd::connect();
+    $b = $db->query('INSERT INTO animale (nom_animale, genre_animale, age,id_type, id_traitement) Values("'.$name.'", "'.$genre.'", "'.$age.'", "'.$type.'", '.$traitement.')');
       return true;
     } catch (\Throwable $th) {
       return false;
@@ -45,6 +45,6 @@ class AnimalModel
   public function delete($id)
   {
     $db = ConnextionBdd::connect();
-    $query = $db->query("DELETE FROM animale where id = ".(int)$id );
+    $query = $db->query("DELETE FROM animale where id_animale = ".(int)$id );
   }
 }
