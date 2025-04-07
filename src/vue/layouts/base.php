@@ -10,7 +10,7 @@ $uri = $_SERVER['REQUEST_URI'];
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?php echo $title ?></title>
   <style>
-   
+   <?php include '../src/assets/css/style.css' ?>
   </style>
 </head>
 <body>
