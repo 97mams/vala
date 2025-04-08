@@ -3,9 +3,11 @@
 require "../vendor/autoload.php";
 
 use App\model\AnimalModel;
+use App\model\TypeElevageModel;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+
 
 $app = new \Silex\Application();
 $app['debug'] = true;
@@ -24,8 +26,9 @@ $app->get('/', function(Request $request)
 
 $app->get('/register', function () 
 {
-
-  $animal = ['name'=>'', 'genre' => '', 'type'=> '', 'sexe' => '', 'age' => ''];
+  $model = new TypeElevageModel();
+  $type = $model->index();
+  $animal = ['name'=>'', 'genre' => '', 'sexe' => '', 'age' => ''];
   require '../src/vue/page/register.php';
   return new Response();
 }
@@ -66,6 +69,21 @@ $app->get('/animal/{id}', function ($id)
   $animal = $model->getAnimal((int)$id);
   require '../src/vue/page/detail.php';
   return new Response();
+});
+
+//route for setting
+
+$app->get('/setting', function () {
+  include '../src/vue/page/setting.php';
+  return new Response();
+});
+
+$app->post('/setting', function (Request $request)
+{
+  $model = new TypeElevageModel();
+  $isReccord =  $model->store($request);
+  include '../src/vue/page/setting.php';
+  return new Response('/');
 });
 
 $app->run();

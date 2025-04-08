@@ -20,6 +20,7 @@ $uri = $_SERVER['REQUEST_URI'];
   <ul class="flex gap-3 mr-60">
     <li><a href="/" class="hover:underline <?php if($uri == '/') echo 'underline' ?>">liste</a></li>
     <li><a href="/register" class="hover:underline <?php if($uri == '/register') echo 'underline' ?>">ajouter</a></li>
+    <li><a href="/setting" class="hover:underline <?php if($uri == '/setting') echo 'underline' ?>">Réglages</a></li>
   </ul>
 </div>
 <div class="w-full flex">
