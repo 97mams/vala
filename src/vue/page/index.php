@@ -21,7 +21,7 @@ ob_start();
               <span class="text-gray-400">#</span> Age
             </th>
             <th className="border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right">
-              <span class="text-gray-400">#</span> Sexe
+              <span class="text-gray-400">#</span> action
             </th>
           </tr>
         </thead>
