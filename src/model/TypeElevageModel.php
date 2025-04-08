@@ -20,7 +20,7 @@ class TypeElevageModel
 
   public function store($request) 
   {
-    $name = $request->get('type');
+    $name = $request->get('type_animal');
     try {
       $db = ConnextionBdd::connect();
       $query = $db->query('INSERT INTO type_elevage (nom_type) VALUES ("'.$name.'")');
