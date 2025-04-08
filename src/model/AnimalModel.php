@@ -4,7 +4,6 @@ namespace App\model;
 
 use App\config\ConnextionBdd;
 use App\entity\Animal;
-use PDO;
 use PDOStatement;
 
 class AnimalModel
@@ -47,4 +46,5 @@ class AnimalModel
     $db = ConnextionBdd::connect();
     $query = $db->query("DELETE FROM animale where id_animale = ".(int)$id );
   }
+
 }
