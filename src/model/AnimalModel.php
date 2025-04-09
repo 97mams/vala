@@ -32,10 +32,11 @@ class AnimalModel
     $type = $request->get('type');
     $traitement = $request->get('traitement');
     $age = $request->get('age');
-    try {
     $db = ConnextionBdd::connect();
-    $b = $db->query('INSERT INTO animale (nom_animale, genre_animale, age,id_type, id_traitement) Values("'.$name.'", "'.$genre.'", "'.$age.'", "'.$type.'", '.$traitement.')');
-      return true;
+    $b = $db->query('INSERT INTO animale (nom_animale, id_genre, age, id_type, id_traitement) Values("'.$name.'", '.(int)$genre.', '.(int)$age.', '.(int)$type.', '.$traitement.')');
+    dd($b);  
+    try {
+    return true;
     } catch (\Throwable $th) {
       return false;
      }
