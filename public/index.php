@@ -3,6 +3,7 @@
 require "../vendor/autoload.php";
 
 use App\model\AnimalModel;
+use App\model\GenreModel;
 use App\model\TypeElevageModel;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,8 +27,8 @@ $app->get('/', function(Request $request)
 
 $app->get('/register', function () 
 {
-  $model = new TypeElevageModel();
-  $type = $model->index();
+  $type = (new TypeElevageModel())->index();
+  $genre = (new GenreModel())->index();
   $animal = ['name'=>'', 'genre' => '', 'sexe' => '', 'age' => ''];
   require '../src/vue/page/register.php';
   return new Response();
