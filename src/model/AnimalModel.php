@@ -13,7 +13,7 @@ class AnimalModel
   {
     $animal = new Animal();
     $db = ConnextionBdd::connect();
-    $query = $db->query('SELECT * from animale');
+    $query = $db->query('SELECT * from animale JOIN genre on animale.id_genre=genre.id_genre JOIN type_elevage on animale.id_type= type_elevage.id_type');
     return $query;
   }
 
