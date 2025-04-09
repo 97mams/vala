@@ -24,14 +24,19 @@ if(empty($animal['id'])) {
        value="<?=$animal["name"]?>"-
     >
     <label for="genre" class= "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Genre</label>
-    <input 
+    <select
       type="text" 
-      name="name" 
-      id="genre"
-      required 
+      name="genre" 
+      id="type" 
       class="flex h-9 w-full rounded-md border border-[ #e6e6e6] bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-[oklch(0.145 0 0)] placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[oklch(0.708 0 0)] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-       value="<?=$animal["genre"]?>"
+      required
       >
+      <?php 
+      foreach ($genre as $value) {
+        echo '<option value="'.$value['id_genre'].'">'.$value["nom_genre"].'</option>';
+      }
+      ?>
+      </select>
      <label for="type" class= "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Type</label> 
      <select
       type="text" 
