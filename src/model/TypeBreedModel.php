@@ -4,7 +4,7 @@ namespace App\model;
 
 use App\config\ConnextionBdd;
 
-class TypeBreedgeModel
+class TypeBreedModel
 {
 
   public function index()
