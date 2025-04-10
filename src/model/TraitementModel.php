@@ -23,12 +23,14 @@ class TraitementModel
     $db = ConnextionBdd::connect();
     $type = $request->get('type');
     $description = $request->get('description');
+    $name = $request->get('name');
     $duration = $request->get('duration');
     $status = 0;
     try {
-      $db->query('INSERT INTO tratiment(type, description, duration, status) VALUES ("'.$type.'", "'.$description.'", '.$duration.', '.$status.')');
+      $db->query('INSERT INTO traitement(type,nom_traitement, description, duree, status) VALUES ("'.$type.'","'.$name.'", "'.$description.'", '.(int)$duration.', '.$status.')');
+      return true;
     } catch (\PDOException $th) {
-      throw $th;
+      return false;
     }
   }
 
