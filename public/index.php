@@ -82,10 +82,10 @@ $app->get('/setting', function () {
   return new Response();
 });
 
-$app->post('/setting', function (Request $request)
+$app->post('/setting/breed', function (Request $request)
 {
   $model = new TypeBreedModel();
-  $isReccord =  $model->store($request);
+  $isReccordBreed =  $model->store($request);
   include '../src/vue/page/setting.php';
   return new Response();
 });
@@ -93,9 +93,17 @@ $app->post('/setting', function (Request $request)
 $app->post('/setting/treatment', function (Request $request)
 {
   $model = new TraitementModel();
-  $isReccord =  $model->store($request);
+  $isReccordTreatment =  $model->store($request);
   include '../src/vue/page/setting.php';
   return new Response();
+});
+
+//route for treatment
+
+$app->get('/treatment/delete/{id}', function ($id)
+{
+  $model = (new TraitementModel())->delete($id);
+  return new RedirectResponse('/setting');
 });
 
 $app->run();

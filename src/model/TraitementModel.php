@@ -3,6 +3,7 @@
 namespace App\model;
 
 use App\config\ConnextionBdd;
+use Error;
 
 class TraitementModel
 {
@@ -11,10 +12,10 @@ class TraitementModel
   {
     $db = ConnextionBdd::connect();
     try {
-      $result = $db->query("SELECT * FROM traitement");
+      $result = $db->query("SELECT * FROM traitement JOIN type_elevage on traitement.id_type=type_elevage.id_type");
       return $result->fetchAll();
     } catch (\PDOException $th) {
-      throw $th;
+      throw new Error( $th);
     }
   }
 
@@ -25,12 +26,23 @@ class TraitementModel
     $description = $request->get('description');
     $name = $request->get('name');
     $duration = $request->get('duration');
-    $status = 0;
+    $breed = $request->get('idBreed');
     try {
-      $db->query('INSERT INTO traitement(type,nom_traitement, description, duree, status) VALUES ("'.$type.'","'.$name.'", "'.$description.'", '.(int)$duration.', '.$status.')');
+      $db->query('INSERT INTO traitement(type,nom_traitement, description, duree, id_type) VALUES ("'.$type.'","'.$name.'", "'.$description.'", '.(int)$duration.', '.(int)$breed.')');
       return true;
     } catch (\PDOException $th) {
-      return false;
+      throw new Error($th);
+    }
+  }
+
+  public function delete($id)
+  {
+    $db = ConnextionBdd::connect();
+    try {
+      $db->query("DELETE FROM traitement WHERE id_traitement = ".(int)$id);
+      return true;
+    } catch (\PDOException $th) {
+      throw new Error( $th);
     }
   }
 
