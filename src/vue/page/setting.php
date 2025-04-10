@@ -34,9 +34,19 @@ ob_start();
 
   <div>
     <h3 class="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">Formulaire du traitement</h3>
-    <form action="" method="post">
+    <form action="/setting/treatment" method="post">
       <div>
-        <label for="type" class= "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Ajouter le type de traitement(ex: vaccination ou pile):</label>
+        <label for="name" class= "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Ajouter le type du traitement(ex: vaccination ou pile):</label>
+        <input 
+          type="text" 
+          name="name" 
+          id="name"
+          required 
+          class="flex h-9 w-full rounded-md border border-[ #e6e6e6] bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-[oklch(0.145 0 0)] placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[oklch(0.708 0 0)] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+          >
+      </div>
+      <div>
+        <label for="type" class= "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Ajouter le nom du traitement:</label>
         <input 
           type="text" 
           name="type" 
@@ -53,21 +63,20 @@ ob_start();
           id="description"
           required 
           class="flex w-full rounded-md border border-[ #e6e6e6] bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-[oklch(0.145 0 0)] placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[oklch(0.708 0 0)] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-          >
-          </textarea>
+          ></textarea>
       </div>
       <div>
-        <label for="date" class= "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Ajouter la durration de rappel (ex: tout le 30 jours):</label>
+        <label for="duration" class= "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Ajouter la durration de rappel (ex: tout le 30 jours):</label>
         <input 
           type="text" 
-          name="date" 
-          id="date"
+          name="duration" 
+          id="duration"
           required 
           class=" w-sm flex h-9 w-full rounded-md border border-[ #e6e6e6] bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-[oklch(0.145 0 0)] placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[oklch(0.708 0 0)] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           >
       </div>
       <div>
-        <label for="date" class= "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Type d'élévage:</label>
+        <label for="genre" class= "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Type d'élévage:</label>
         <select
           type="text" 
           name="genre" 
@@ -82,22 +91,49 @@ ob_start();
           ?>
         </select>
         </div>
+        <?=$message?>
       <button type="submit" class="mt-8 h-9 px-4 py-2 bg-[#171717] cursor-pointer text-[#fafafa] shadow-sm hover:bg-gray-700 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#a1a1a1] disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0">
         Ajouter
       </button>
     </form>
   </div>
   <div class="w-full">
-      <h3 class="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">Liste de reglages</h3>
+      <h3 class="mt-8 mb-3 scroll-m-20 text-2xl font-semibold tracking-tight">Liste de reglages</h3>
       <table class="w-full border border-[#171717]">
         <thead>
           <tr>
-            <th class="border border-[#171717]">Vaccin</th>
+            <th class="border border-[#171717]">Type</th>
+            <th class="border border-[#171717]">Nom</th>
             <th class="border border-[#171717]">Description</th>
-            <th class="border border-[#171717]">Date</th>
+            <th class="border border-[#171717]">Durée par mois</th>
             <th class="border border-[#171717]">Elevages</th>
           </tr>
         </thead>
+        <tbody>
+          <?php
+          foreach ($treatments as $treatment) {
+            echo '
+            <tr class="m-0 border-t p-0 even:bg-[oklch(0.97 0 0)]"> 
+              <td  class="border border-[#171717] px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
+                '.$treatment['type'].'
+              </td>
+              <td  class="border border-[#171717] px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
+                '.$treatment['nom_traitement'].'
+              </td>
+              <td  class="border border-[#171717] px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
+                '.$treatment['description'].'
+              </td>
+              <td  class="border border-[#171717] px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
+                '.$treatment['duree'].'
+              </td>
+              <td  class="border border-[#171717] px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
+                '.$treatment['status'].'
+              </td>
+            </tr>';
+          }
+          
+          ?>
+        </tbody>
       </table>
   </div>
 </div>
