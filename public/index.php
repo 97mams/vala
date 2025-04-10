@@ -4,7 +4,8 @@ require "../vendor/autoload.php";
 
 use App\model\AnimalModel;
 use App\model\GenreModel;
-use App\model\TypeElevageModel;
+use App\model\TraitementModel;
+use App\model\TypeBreedModel;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -14,7 +15,7 @@ $app = new \Silex\Application();
 $app['debug'] = true;
 
 
-$app->get('/', function(Request $request)
+$app->get('/', function()
 {
   $model = new AnimalModel();
   $row = $model->getAnimals();
@@ -27,9 +28,9 @@ $app->get('/', function(Request $request)
 
 $app->get('/register', function () 
 {
-  $type = (new TypeElevageModel())->index();
+  $type = (new TypeBreedModel())->index();
   $genre = (new GenreModel())->index();
-  $animal = ['name'=>'', 'genre' => '', 'sexe' => '', 'age' => ''];
+  $animal = ['name'=>'', 'age' => ''];
   require '../src/vue/page/register.php';
   return new Response();
 }
@@ -75,16 +76,26 @@ $app->get('/animal/{id}', function ($id)
 //route for setting
 
 $app->get('/setting', function () {
+  $breed = (new TypeBreedModel())->index();
+  $treatments = (new TraitementModel())->index();
   include '../src/vue/page/setting.php';
   return new Response();
 });
 
 $app->post('/setting', function (Request $request)
 {
-  $model = new TypeElevageModel();
+  $model = new TypeBreedModel();
   $isReccord =  $model->store($request);
   include '../src/vue/page/setting.php';
-  return new Response('/');
+  return new Response();
+});
+
+$app->post('/setting/treatment', function (Request $request)
+{
+  $model = new TraitementModel();
+  $isReccord =  $model->store($request);
+  include '../src/vue/page/setting.php';
+  return new Response();
 });
 
 $app->run();
