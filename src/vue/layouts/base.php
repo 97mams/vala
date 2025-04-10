@@ -24,14 +24,16 @@ $uri = $_SERVER['REQUEST_URI'];
   </ul>
 </div>
 <div class="w-full flex">
-  <div class="w-md h-full"></div>
+  <div class="w-md min-h-[100vh]"></div>
   <div class="w-full h-full">
   <?php echo $content?>
   </div>
   <div class="w-md h-full"></div>
 </div>
 
-
+<div class="w-full h-[50px] mt-8 bg-[#171717] text-sm text-[#fafafa] text-center flex items-center justify-center">
+  <p>building by <i class="underline">anjaniainamamisoa@gmail.com</i> <br> github <a href="https://97mams.git">97mams</a></p>
+</div>
 <script>
  <?php include '../src/assets/js/tailwind.js' ?>
 </script>
