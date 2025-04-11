@@ -2,6 +2,17 @@
 $action = "";
 $title = "";
 if(empty($animal['id_animale'])) {
+  if (isset($_GET['error'])) {
+    $animal = $_GET;
+    $typeFilter = array_filter($type, function ($type){
+      if($type['id_type'] === $_GET['id_type']) return $type;
+    });
+    $genreFilter = array_filter($genre, function ($genre){
+      if($genre['id_genre'] === $_GET['id_genre']) return $genre;
+    });
+    $animal += $typeFilter[2]; 
+    $animal += $genreFilter[0];
+  }
   $action = "/store";
   $title = "Page d'ajout";
 } else {
@@ -12,6 +23,7 @@ if(empty($animal['id_animale'])) {
 
 <div class="w-full pt-8">
 <h2 class="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0"><?=$title?></h2>
+<p class="text-red-500 leading-7"><?php if(isset($_GET['error']) && $_GET['error'] == 1) echo "Le nom a été déjas exister vous pouvez le changer ?"?></p>
 <div>
   <form action="<?=$action?>" method="post">
     <label for="name" class= "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Nom</label>
