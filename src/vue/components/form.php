@@ -1,7 +1,7 @@
 <?php
 $action = "";
 $title = "";
-if(empty($animal['id'])) {
+if(empty($animal['id_animale'])) {
   $action = "/store";
   $title = "Page d'ajout";
 } else {
@@ -21,7 +21,7 @@ if(empty($animal['id'])) {
       id="name"
       required 
       class="flex h-9 w-full rounded-md border border-[ #e6e6e6] bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text[oklch(0.145 0 0)] placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[oklch(0.708 0 0)] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-       value="<?=$animal["name"]?>"-
+       value="<?=$animal["nom_animale"]?>"-
     >
     <label for="genre" class= "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Genre</label>
     <select
@@ -32,6 +32,7 @@ if(empty($animal['id'])) {
       required
       >
       <?php 
+      echo '<option value="'.$animal['id_genre'].'">'.$animal["nom_genre"].'</option>';
       foreach ($genre as $value) {
         echo '<option value="'.$value['id_genre'].'">'.$value["nom_genre"].'</option>';
       }
@@ -46,6 +47,7 @@ if(empty($animal['id'])) {
       required
       >
       <?php 
+      echo '<option value="'.$animal['id_type'].'">'.$animal["nom_type"].'</option>';
       foreach ($type as $value) {
         echo '<option value="'.$value['id_type'].'">'.$value["nom_type"].'</option>';
       }

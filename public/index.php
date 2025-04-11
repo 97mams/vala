@@ -30,7 +30,7 @@ $app->get('/register', function ()
 {
   $type = (new TypeBreedModel())->index();
   $genre = (new GenreModel())->index();
-  $animal = ['name'=>'', 'age' => ''];
+  $animal = ['nom_animale'=>'','id_type'=>'','nom_type'=>'','id_genre'=>'','nom_genre'=>'', 'age' => ''];
   require '../src/vue/page/register.php';
   return new Response();
 }
@@ -52,7 +52,7 @@ $app->get('/edit/animal/{id}', function ($id)
 {
   $idAnimal = (int)$id;
   $model = new AnimalModel();
-  $animal = $model->getAnimal($idAnimal);
+  $animal = $model->getAnimalById($idAnimal);
   require '../src/vue/page/edit.php';
   return new Response();
 });
@@ -68,7 +68,7 @@ $app->post('/animal', function (Request $request)
 $app->get('/animal/{id}', function ($id)
 {
   $model = new AnimalModel();
-  $animal = $model->getAnimal((int)$id);
+  $animal = $model->getAnimalById((int)$id);
   require '../src/vue/page/detail.php';
   return new Response();
 });
