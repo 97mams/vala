@@ -3,6 +3,7 @@
 namespace App\model;
 
 use App\config\ConnextionBdd;
+use Error;
 
 class TypeBreedModel
 {
@@ -15,6 +16,17 @@ class TypeBreedModel
      return $types->fetchAll();
     } catch (\PDOException $th) {
       throw $th;
+    } 
+  }
+
+  public function getTypeBreedByName(string $name) : array
+  {
+    try{
+      $db = ConnextionBdd::connect();
+      $types = $db->query("SELECT * FROM type_elevage WHERE nom_type = ".$name);
+     return $types->fetchAll();
+    } catch (\PDOException $th) {
+      throw new Error($th);
     } 
   }
 

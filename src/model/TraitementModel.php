@@ -19,6 +19,17 @@ class TraitementModel
     }
   }
 
+  public function getTraitementByIdBreed($idBreed):array
+  {
+    $db = ConnextionBdd::connect();
+    try {
+      $result = $db->query('SELECT * FROM traitement JOIN type_elevage on traitement.id_type=type_elevage.id_type WHERE id_type = '.(int)$idBreed);
+      return $result->fetchAll();
+    } catch (\PDOException $th) {
+      throw new Error( $th);
+    }
+  }
+
   public function store($request)
   {
     $db = ConnextionBdd::connect();
