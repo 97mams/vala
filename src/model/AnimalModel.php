@@ -29,7 +29,7 @@ class AnimalModel
   public function getAnimalByName(String $name)
   {
     $db = ConnextionBdd::connect();
-    $query = $db->query("SELECT * from animale where nom_animale=".$name );
+    $query = $db->query('SELECT * from animale where nom_animale="'.$name.'"');
     
     return $query->fetch();
   }

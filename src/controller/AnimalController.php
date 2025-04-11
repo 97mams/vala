@@ -10,22 +10,22 @@ use Symfony\Component\HttpFoundation\Request;
 class AnimalController
 {
 
-  public function breatStore(string $nameAnimal, int $idBreed)
+  public function breatStore(string $nameAnimal, int $idBreed):void
   {
+    $traet = new TreatModel();
     $modelAnimal = (new AnimalModel())
             ->getAnimalByName($nameAnimal);
     $modelTreatments = (new TraitementModel())
             ->getTraitementByIdBreed($idBreed);
-    foreach ($modelTreatments as $treatment) {
-      (new TreatModel())
-      ->store(
+    foreach ($modelTreatments as $treatment){ 
+        $traet->store(
         $modelAnimal['id_animale'], 
-        $$treatment['id_traitement']
+        $treatment['id_traitement']
       );
     }
   }
 
-  public function strore(Request $request): bool
+  public function store(Request $request): bool
   {
     $model = (new AnimalModel())
             ->store($request);
