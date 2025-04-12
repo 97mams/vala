@@ -45,4 +45,15 @@ class TreatModel
       throw new Error($th);
     }
   }
+
+  public function delete($id)
+  {
+    $db = ConnextionBdd::connect();
+    try {
+      $db->query("DELETE FROM traiter WHERE id_traiter = ".(int)$id);
+      return true;
+    } catch (\PDOException $th) {
+      throw new Error( $th);
+    }
+  }
 }

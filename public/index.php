@@ -3,6 +3,7 @@
 require "../vendor/autoload.php";
 
 use App\controller\AnimalController;
+use App\controller\TreamentController;
 use App\model\AnimalModel;
 use App\model\GenreModel;
 use App\model\TraitementModel;
@@ -104,14 +105,17 @@ $app->post('/setting/breed', function (Request $request)
   return new Response();
 });
 
+//route for treatment
+
 $app->post('/setting/treatment', function (Request $request)
 {
-  $model = new TraitementModel();
-  $isReccordTreatment =  $model->store($request);
+  $isReccord = (new TreamentController())
+    ->store($request);
+    if(!$isReccord) {
+      throw new Error('tsy mety');
+    }
   return new RedirectResponse('/setting');
 });
-
-//route for treatment
 
 $app->get('/treatment/delete/{id}', function ($id)
 {

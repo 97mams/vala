@@ -30,7 +30,7 @@ class TraitementModel
     }
   }
 
-  public function store($request)
+  public function store($request):bool
   {
     $db = ConnextionBdd::connect();
     $type = $request->get('type');
@@ -51,6 +51,7 @@ class TraitementModel
     $db = ConnextionBdd::connect();
     try {
       $db->query("DELETE FROM traitement WHERE id_traitement = ".(int)$id);
+      (new TreatModel())->delete($id);
       return true;
     } catch (\PDOException $th) {
       throw new Error( $th);
