@@ -9,21 +9,22 @@ use Symfony\Component\HttpFoundation\Request;
 
 class TreamentController
 {
-  private int $breed;
 
   private function treatStoreWithAnimal(int $idTraitement):void
   {
     $treat = new TreatModel();
     $animals = (new AnimalModel())->getAnimals()->fetchAll();
+    $idTraitement = (new TraitementModel())->getTraitementLastReccord();
     foreach($animals as $animal) {
-      $treat->store($animal['id_animale'], $this->breed);
+     if ($animal['id_type'] === $idTraitement[0]['id_type']) {
+      $treat->store($animal['id_animale'], $idTraitement[0]['id_traitement']);
+     }
     }
   }
 
   public function store(Request $request):bool
   {
     $model = new TraitementModel();
-    $this->breed = $request->get('idBreed');
     $model->store($request);
     $treatments =  $model->index();
     $this->treatStoreWithAnimal($treatments[0]['id_traitement']);
