@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 class AnimalController
 {
 
-  public function breatStore(string $nameAnimal, int $idBreed):void
+  public function treatStore(string $nameAnimal, int $idBreed):void
   {
     $traet = new TreatModel();
     $modelAnimal = (new AnimalModel())
@@ -30,7 +30,7 @@ class AnimalController
     $model = (new AnimalModel())
             ->store($request);
     if ($model) {
-      $this->breatStore($request->get('name'), $request->get('type'));
+      $this->treatStore($request->get('name'), $request->get('type'));
       return true;
     }
     return false;
