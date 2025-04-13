@@ -19,6 +19,17 @@ class TraitementModel
     }
   }
 
+  public function getTraitementLastReccord():array
+  {
+    $db = ConnextionBdd::connect();
+    try {
+      $result = $db->query("SELECT * FROM traitement Order by id_traitement DESC LIMIT 0,1");
+      return $result->fetchAll();
+    } catch (\PDOException $th) {
+      throw new Error( $th);
+    }
+  }
+
   public function getTraitementByIdBreed($idBreed):array
   {
     $db = ConnextionBdd::connect();
