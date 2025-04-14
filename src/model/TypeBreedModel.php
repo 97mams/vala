@@ -27,7 +27,7 @@ class TypeBreedModel
      return $types->fetchAll();
     } catch (\PDOException $th) {
       throw new Error($th);
-    } 
+    }
   }
 
   public function store($request) 

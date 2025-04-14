@@ -4,18 +4,21 @@ namespace App\config;
 
 class ConnextionBdd 
 {
-  private static string $dbName = 'fiompina';
-  private static string $host = '127.0.0.1';
-  private static string $pwd = '';
-  private static string $user = 'root';
-
-  public function __construct(){}
-
+  
+  function __construct()
+  {
+  }
+  
   public static function connect() 
   {
-    $dsn = "mysql:dbname=".self::$dbName . ";host=". self::$host ;
+    $env = parse_ini_file('../.env');
+    $dbName = $env['DB_NAME'];
+    $host = $env['DB_HOST'];
+    $user = $env['DB_USER'];
+    $pwd = $env['DB_PASSWORD'];
+    $dsn = "mysql:dbname=" . $dbName . ";host=".$host ;
     try {
-      $connect = new \PDO($dsn, self::$user, self::$pwd);
+      $connect = new \PDO($dsn, $user, $pwd);
     } 
     catch (\PDOException $th) {
       echo $th->getMessage();

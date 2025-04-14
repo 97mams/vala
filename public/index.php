@@ -2,6 +2,8 @@
 
 require "../vendor/autoload.php";
 
+use App\config\ConnextionBdd;
+
 use App\controller\AnimalController;
 use App\controller\TreamentController;
 use App\model\AnimalModel;
