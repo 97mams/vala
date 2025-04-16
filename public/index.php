@@ -125,4 +125,12 @@ $app->get('/treatment/delete/{id}', function ($id)
   return new RedirectResponse('/setting');
 });
 
+//status
+
+$app->post('/treat/status', function (Request $request)
+{
+  $model = (new TreatModel())->updateStatus($request->get('id_animal'));
+  return new RedirectResponse('/animal/'.$request->get('id_animal'));
+});
+
 $app->run();
