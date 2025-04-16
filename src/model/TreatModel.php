@@ -46,6 +46,17 @@ class TreatModel
     }
   }
 
+  public function updateStatus($idAnimal)
+  {
+    $status = 1;
+    try {
+      $db = ConnextionBdd::connect();
+      $db->query('UPDATE traiter SET status ='.$status.' WHERE id_animale ='.(int)$idAnimal);
+    } catch (\PDOException $th) {
+      throw new Error($th);
+    } 
+  }
+
   public function delete($id)
   {
     $db = ConnextionBdd::connect();
