@@ -54,7 +54,20 @@ class AnimalModel
      throw new Error($th);
     }
   }
-  
+
+  public function update($request):bool
+  {
+    $db = ConnextionBdd::connect();
+    try {
+      $d = $db->query('UPDATE animale 
+                  SET nom_animale="'.$request->get('nom_animale').'"
+                  WHERE id_animale='.(int)$request->get('id_animale'));
+      return true;
+    } catch (\PDOException $th) {
+      throw $th->getMessage();
+    }
+  }
+
   public function delete($id)
   {
     $db = ConnextionBdd::connect();
