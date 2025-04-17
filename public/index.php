@@ -2,8 +2,6 @@
 
 require "../vendor/autoload.php";
 
-use App\config\ConnextionBdd;
-
 use App\controller\AnimalController;
 use App\controller\TreamentController;
 use App\model\AnimalModel;
@@ -35,7 +33,7 @@ $app->get('/register', function ()
 {
   $type = (new TypeBreedModel())->index();
   $genre = (new GenreModel())->index();
-  $animal = ['nom_animale'=>'','id_type'=>'','id_genre'=>'','nom_genre'=>'', 'age' => ''];
+  $animal = ['id_animale'=>'','nom_animale'=>'','id_type'=>'','id_genre'=>'','nom_genre'=>'', 'age' => ''];
   require '../src/vue/page/register.php';
   return new Response();
 }
@@ -59,7 +57,14 @@ $app->post('/store', function(Request $request)
 });
 
 $app->post('/update', function(Request $request){
-dd($request);
+  $message = 0;
+  $animal =  (new AnimalModel())->update($request);
+  if ($animal) {
+    return new RedirectResponse('/');
+  } else {
+    $message = 1;
+    return new RedirectResponse('/animal/'.$request->get('id').'?message='.$message.'');
+  }
 });
 
 $app->get('/edit/animal/{id}', function ($id)
