@@ -26,6 +26,7 @@ if(empty($animal['id_animale'])) {
 <p class="text-red-500 leading-7"><?php if(isset($_GET['error']) && $_GET['error'] == 1) echo "Le nom a été déjas exister vous pouvez le changer ?"?></p>
 <div>
   <form action="<?=$action?>" method="post">
+    <input type="hidden" name="id" value="<?=$animal["id_animale"]?>">
     <label for="name" class= "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Nom</label>
     <input 
       type="text" 
