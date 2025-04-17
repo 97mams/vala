@@ -6,7 +6,7 @@ ob_start();
 
 <div class="mt-8 my-6 w-full overflow-y-auto">
   <h1 class="mt-10 scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">Page de réglages</h1>
-  <p class="leading-7 [&:not(:first-child)]:mt-6">Vous pouvez ajouter ici tous les vaccins conserner à la traitement de vos animalaux.</p>
+  <p class="leading-7 [&:not(:first-child)]:mt-6">Vous pouvez ajouter ici tous les vaccins conserner à la traitement de vos animaux.</p>
   <div>
     <h3 class="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">Formulaire du type d'élevage</h3>
     <?php include '../src/vue/components/_formBreed.php' ?>
