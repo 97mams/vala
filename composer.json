@@ -2,7 +2,8 @@
     "name": "mams/php",
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "App\\": "src/",
+            "App\\CLI\\": "bin"
         }
     },
     "authors": [
