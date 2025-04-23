@@ -30,6 +30,7 @@ class Db
         ->pdo
         ->query('CREATE DATABASE ' . $this->databaseName());
       echo "-> " .$this->databaseName() ." created successfully";
+      exit;
     }
     echo "-> Database allready exiting !";
   }
