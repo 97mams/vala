@@ -12,5 +12,6 @@ $arg1    = $argv[2] ?? null;
 
 match ($command) {
   "db:create" => $database->createDatabase(),
+  "db:table" => $database->createTable($arg1),
    default => print "command is not matching"
 };
