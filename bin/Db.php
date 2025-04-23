@@ -34,12 +34,73 @@ class Db
     }
     echo "-> Database allready exiting !";
   }
+
+  /**
+   * create an column reccord
+   * @param string $tableName
+   */
+  public function createTable(string $tableName):void
+  {
+    $fields = $this->handleField();
+    $entity = "";
+    foreach ($fields as $field) {
+      $entity .= $field['name']." ".$field['type']."(".$field['size'].") NOT NULL, ";
+    }
+    $query = "CREATE TABLE $tableName (id_".$tableName." int(11) NOT NULL AUTO_INCREMENT, ".$entity ." PRIMARY KEY(id_".$tableName."))";
+    $pdo = $this->connect();
+    $pdo->query($query);
+  }
   
+  /**
+   * many fields
+   * @return []
+   */
+  private function handleField() : array 
+  {
+    $field =[$this->field()];
+    while ($this->isContunous()) {
+        $field[] = $this->field();
+    }
+    return $field;
+  }
+  
+  /**
+   * build an array for name field type ande size
+   * @return []
+   */
+  private function field(): array
+  {
+    $name   = (string)readline('Nom du champ: ');
+    $type   = readline('Type: ');
+    $size   = (int)readline('Taille: ');
+    return [
+             'name' => $name, 
+             'type' => $type, 
+             'size' => $size
+            ];
+  }
+  
+  /**
+   * check for add other column
+   * @return bool
+   */
+  private function isContunous():bool
+  {
+    echo "Entre plus de champs ? Tapez 'oui' si on continue sinon tapez sur Entrer";
+    $handle = fopen("php://stdin", "r");
+    $line = fgets($handle);
+    if (trim($line) == 'oui') {
+      return true;
+    }
+    return false;
+  }
+
   private function verfiDatabaseExit(): bool
   {
     $statement = $this->pdo->query('SHOW DATABASES LIKE "'.$this->databaseName().'"');
     return $statement->fetch();
   }
+
 
   /**
    * connect database with PDO
