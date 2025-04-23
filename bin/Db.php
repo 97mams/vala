@@ -66,7 +66,7 @@ class Db
                             AND TABLE_NAME = '".$tableName."'
                           ")
                   ->fetch();
-    if(count($table) == 0) {
+    if(!$table) {
       return false;
     }
     return true;
