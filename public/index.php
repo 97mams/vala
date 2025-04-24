@@ -108,8 +108,7 @@ $app->post('/setting/breed', function (Request $request)
 {
   $model = new TypeBreedModel();
   $isReccordBreed =  $model->store($request);
-  include '../src/vue/page/setting.php';
-  return new Response();
+  return new RedirectResponse("/setting?breed=".$isReccordBreed);
 });
 
 //route for treatment
@@ -121,7 +120,7 @@ $app->post('/setting/treatment', function (Request $request)
     if(!$isReccord) {
       throw new Error('tsy mety');
     }
-  return new RedirectResponse('/setting');
+  return new RedirectResponse('/setting?treatment='.$isReccord);
 });
 
 $app->get('/treatment/delete/{id}', function ($id)

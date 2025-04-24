@@ -37,7 +37,7 @@ class TreatModel
    */
   public function store($animal, $treatment) : void
   {
-    $date = date("m-d-y", time());
+    $date = date("y-m-d H:is", time());
     $status = 0;
     try {
       $db = ConnextionBdd::connect();

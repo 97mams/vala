@@ -20,7 +20,7 @@ class GenreModel
 
   public function store($request)
   {
-    $date = date("m-d-y", time());
+    $date = date("y-m-d H:i:s", time());
     $name = $request->get('name_type');
     try{
       $db = ConnextionBdd::connect();

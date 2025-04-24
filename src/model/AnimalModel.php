@@ -34,14 +34,16 @@ class AnimalModel
   
   public function store($request):bool
   {
+    $date = date("y-m-d H:i:s", time());
+
     $name = $request->get('name');
     $genre = $request->get('genre');
     $type = $request->get('type');
     $age = $request->get('age');
     //unique name animal
     $verif = $this->uniqueNameAnimal($name);
-    $createdAt = time();
-    $updatedAt = time();
+    $createdAt = $date;
+    $updatedAt = $date;
     $db = ConnextionBdd::connect();
     if ($verif) {
       return false;

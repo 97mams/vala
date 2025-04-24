@@ -43,7 +43,7 @@ class TraitementModel
 
   public function store($request):bool
   {
-    $date = date("m-d-y", time());
+    $date = date("y-m-d H:i:s", time());
     $db = ConnextionBdd::connect();
     $type = $request->get('type');
     $description = $request->get('description');
