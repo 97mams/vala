@@ -29,7 +29,7 @@ class Db
       $this
         ->pdo
         ->query('CREATE DATABASE ' . $this->databaseName());
-      echo "-> " .$this->databaseName() ." created successfully";
+      echo "-> \e[0;37;42m " .$this->databaseName() ." created successfully \e[0m ";
       exit;
     }
     echo "-> Database allready exiting !";
@@ -41,7 +41,7 @@ class Db
    */
   public function createTable(string $tableName):void
   {
-    $this->verfiDatabaseExit();die;
+    $this->isDatabase();
     $query  = "";
     $fields = $this->handleField();
     $pdo    = $this->connect();
@@ -121,15 +121,30 @@ class Db
     return false;
   }
 
-  private function verfiDatabaseExit(): void
+  /**
+   * chech of matching database
+   * @return void
+   */
+  private function isDatabase()
   {
-    $statement = $this->pdo->query('SHOW DATABASES LIKE "'.$this->databaseName().'"');
-    if (!$statement->fetch()) {
+    if (!$this->verfiDatabaseExit()) {
       echo "\033[31m Alert: database not found .\033[0m \n";
       echo "\n";
       echo "follow this command:\e[0;37;42m php bin/app.php db:create \e[0m \n";
-      return;
+      exit;
     }
+  }
+  /**
+   * check database exist
+   * @return bool 
+   */
+  private function verfiDatabaseExit(): bool
+  {
+    $statement = $this->pdo->query('SHOW DATABASES LIKE "'.$this->databaseName().'"');
+    if(!$statement->fetch()){
+      return false;
+    }
+    return true;
   }
 
 
