@@ -41,6 +41,7 @@ class Db
    */
   public function createTable(string $tableName):void
   {
+    $this->verfiDatabaseExit();die;
     $query  = "";
     $fields = $this->handleField();
     $pdo    = $this->connect();
@@ -120,10 +121,15 @@ class Db
     return false;
   }
 
-  private function verfiDatabaseExit(): bool
+  private function verfiDatabaseExit(): void
   {
     $statement = $this->pdo->query('SHOW DATABASES LIKE "'.$this->databaseName().'"');
-    return $statement->fetch();
+    if (!$statement->fetch()) {
+      echo "\033[31m Alert: database not found .\033[0m \n";
+      echo "\n";
+      echo "follow this command:\e[0;37;42m php bin/app.php db:create \e[0m \n";
+      return;
+    }
   }
 
 
