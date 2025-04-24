@@ -1,11 +1,12 @@
 <?php
 
-if (isset($isReccordBreed) && $isReccordBreed) {
-  $message = '<p class="text-green-500 leading-7">Enregitrement réussie. 🚀</p>
- ';
-}
-if (isset($isReccordBreed) && !$isReccordBreed) {
-  $message = '<p class="text-red-500 leading-7">Enregitrement échouer. 💥</p>';
+if (isset($_GET['breed'])) {
+  if ($_GET['breed']) {
+    $message = '<p class="text-green-500 leading-7">Enregitrement réussie. 🚀</p>
+   ';
+  } else {
+    $message = '<p class="text-red-500 leading-7">Enregitrement échouer. 💥</p>';
+  }
 }
 
 ?>
