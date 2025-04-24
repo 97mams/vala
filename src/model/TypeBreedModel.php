@@ -32,11 +32,11 @@ class TypeBreedModel
 
   public function store($request) 
   {
+    $date = date("m-d-y", time());
     $name = $request->get('type_animal');
     try {
       $db = ConnextionBdd::connect();
-      $query = $db->query('INSERT INTO type_elevage (nom_type) VALUES ("'.$name.'")');
-      
+      $db->query('INSERT INTO type_elevage (nom_type, created_at, updated_at) VALUES ("'.$name.'",'.$date.','.$date.')');
       return true;
     } catch (\PDOException $th) {
       throw $th;

@@ -43,6 +43,7 @@ class TraitementModel
 
   public function store($request):bool
   {
+    $date = date("m-d-y", time());
     $db = ConnextionBdd::connect();
     $type = $request->get('type');
     $description = $request->get('description');
@@ -50,7 +51,7 @@ class TraitementModel
     $duration = $request->get('duration');
     $breed = $request->get('idBreed');
     try {
-      $db->query('INSERT INTO traitement(type,nom_traitement, description, duree, id_type) VALUES ("'.$type.'","'.$name.'", "'.$description.'", '.(int)$duration.', '.(int)$breed.')');
+      $db->query('INSERT INTO traitement(type,nom_traitement, description, duree, id_type, create_at, update_at) VALUES ("'.$type.'","'.$name.'", "'.$description.'", '.(int)$duration.', '.(int)$breed.','.$date.','.$date.')');
       return true;
     } catch (\PDOException $th) {
       throw new Error($th);

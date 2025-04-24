@@ -3,14 +3,12 @@
 namespace App\model;
 
 use App\config\ConnextionBdd;
-use App\entity\Animal;
 use Error;
 use PDOStatement;
 
 class AnimalModel
 {
 
-  
   public function getAnimals():PDOStatement
   {
     $db = ConnextionBdd::connect();
@@ -22,7 +20,7 @@ class AnimalModel
   {
     $db = ConnextionBdd::connect();
     $query = $db->query('SELECT * from animale JOIN genre on animale.id_genre=genre.id_genre JOIN type_elevage on animale.id_type= type_elevage.id_type where id_animale='.$id);
-    
+
     return $query->fetch();
   }
 
@@ -42,11 +40,13 @@ class AnimalModel
     $age = $request->get('age');
     //unique name animal
     $verif = $this->uniqueNameAnimal($name);
+    $createdAt = time();
+    $updatedAt = time();
     $db = ConnextionBdd::connect();
     if ($verif) {
       return false;
     } else {
-      $d = $db->query('INSERT INTO animale (nom_animale, id_genre, age, id_type) Values("'.$name.'", '.(int)$genre.', '.(int)$age.', '.(int)$type.')');
+      $d = $db->query('INSERT INTO animale (nom_animale, id_genre, age, id_type, created_at, update_at) Values("'.$name.'", '.(int)$genre.', '.(int)$age.', '.(int)$type.', '.$createdAt.' '.$updatedAt.')');
       return true;
     }
     try {
