@@ -41,21 +41,25 @@ class Db
    */
   public function createTable(string $tableName):void
   {
-    var_dump($this->isTable($tableName));die;
+    $query  = "";
     $fields = $this->handleField();
+    $pdo    = $this->connect();
     $entity = "";
     foreach ($fields as $field) {
       $entity .= $field['name']." ".$field['type']."(".$field['size'].") NOT NULL, ";
     }
-    $query = "CREATE TABLE ".$this->databaseName().".".$tableName ." (id_".$tableName." int(11) NOT NULL AUTO_INCREMENT, ".$entity ." PRIMARY KEY(id_".$tableName."))";
-    $pdo = $this->connect();
-
+    if(!$this->isTable($tableName)) {
+      $query = "CREATE TABLE ".$this->databaseName().".".$tableName ." (id_".$tableName." int(11) NOT NULL AUTO_INCREMENT, ".$entity ." created_at TIMESTAMP NOT NULL, updated_at TIMESTAMP NOT NULL, PRIMARY KEY(id_".$tableName."))";
+    } else {
+      $query = "ALTER TABLE ".$this->databaseName().".".$tableName ." ADD ".substr(trim($entity),0,-1);
+    }
     $pdo->query($query);
   }
 
   /**
-   * table
+   * check table exist
    * @param $tableName
+   * @return bool   
    */
   private function isTable($tableName):bool
   {
