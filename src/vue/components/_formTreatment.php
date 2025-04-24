@@ -1,9 +1,8 @@
 <?php
 
-if (isset($isReccordTreatment) && $isReccordTreatment) {
+if (isset($_GET['treatment']) && $_GET['treatment']) {
   $message = '<p class="text-green-500 leading-7">Enregitrement réussie. 🚀</p>';
-}
-if (isset($isReccordTreatment) && !$isReccordTreatment) {
+} else {
   $message = '<p class="text-red-500 leading-7">Enregitrement échouer. 💥</p>';
 }
 ?>
