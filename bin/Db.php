@@ -32,7 +32,7 @@ class Db
       echo "-> \e[0;37;42m " .$this->databaseName() ." created successfully \e[0m ";
       exit;
     }
-    echo "-> Database allready exiting !";
+    echo "-> \e[0;33m Database already exiting ! \e[0m";
   }
 
   /**
@@ -112,7 +112,7 @@ class Db
    */
   private function isContunous():bool
   {
-    echo "Entre plus de champs ? Tapez 'oui' si on continue sinon tapez sur Entrer";
+    echo "Tapez \e[45m'oui'\e[0m si on continue sinon tapez sur Entrer: \n";
     $handle = fopen("php://stdin", "r");
     $line = fgets($handle);
     if (trim($line) == 'oui') {
