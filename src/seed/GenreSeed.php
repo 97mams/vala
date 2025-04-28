@@ -17,4 +17,9 @@ class GenreSeed
       }
   }
 
+  public function down()
+  {
+    
+  }
+
 }
