@@ -4,7 +4,8 @@ namespace App\config;
 
 class ConnextionBdd 
 {
-  
+  private static $instance = null;
+
   function __construct()
   {
   }
@@ -25,6 +26,14 @@ class ConnextionBdd
     }
 
     return $connect;
+  }
+
+  public static function getInstance()
+  {
+    if (self::$instance) {
+      self::connect();
+    }
+    return self::$instance;
   }
 
 }
