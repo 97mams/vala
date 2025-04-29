@@ -10,11 +10,11 @@ class GenreSeed
 
   public function seed():void
   {
-    $genres = ['male', 'femelle'];
-      foreach($genres as $genre){
-        $request = Request::create('/genre','POST', ['name_type' => $genre]);
-        (new GenreModel())->store($request);
-      }
+    $genre = [
+      "genre" => [
+        "ty"
+      ]
+      ];
   }
 
   public function down()
