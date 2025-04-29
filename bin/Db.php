@@ -147,6 +147,27 @@ class Db
     return true;
   }
 
+  /**
+   * query fo insert
+   * @param array
+   */
+  public function queryInsert(array $array): Void
+  {
+    $nameFields = "";
+    $valueFields = "";
+    $table = "";
+    foreach ($array as $index => $elements) {
+      $table = $index;
+      if (is_array($elements)) {
+        foreach ($elements as $key => $value) {
+          $nameFields = $key .",";
+          $valueFields = $value .",";
+        }
+      }
+    }
+    $query = "INSERT INTO ".$this->databaseName().".".$table." (".substr(trim($nameFields),0,-1).") VALUES (".substr(trim($valueFields),0,-1).")";
+    var_dump($query);
+  }
 
   /**
    * connect database with PDO
