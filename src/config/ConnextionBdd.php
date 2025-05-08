@@ -10,7 +10,7 @@ class ConnextionBdd
   {
   }
   
-  public static function connect() 
+  public static function connect() :\PDO
   {
     $env = parse_ini_file('../.env');
     $dbName = $env['DB_NAME'];
@@ -28,9 +28,9 @@ class ConnextionBdd
     return $connect;
   }
 
-  public static function getInstance()
+  public static function getInstance():\PDO
   {
-    if (self::$instance) {
+    if (!self::$instance) {
       self::connect();
     }
     return self::$instance;
