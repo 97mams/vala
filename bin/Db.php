@@ -148,11 +148,12 @@ class Db
   }
 
   /**
-   * query fo insert
+   * query for insert
    * @param array
    */
   public function queryInsert(array $array): Void
   {
+    $date = date('y-m-d H:m:s');
     $nameFields = "";
     $valueFields = "";
     $table = "";
@@ -165,8 +166,15 @@ class Db
         }
       }
     }
-    $query = "INSERT INTO ".$this->databaseName().".".$table." (".substr(trim($nameFields),0,-1).") VALUES (".substr(trim($valueFields),0,-1).")";
-    var_dump($query);
+    $query = 'INSERT INTO '
+            .$this->databaseName().'.'.$table.' ('.substr(trim($nameFields),0,-1).' ,created_at, updated_at) 
+            VALUES ("'.substr(trim($valueFields),0,-1).'", "'.$date.'", "'.$date.'")';
+    try {
+      $this->connect()->query($query);
+      echo "\e[0;37;42m insert Done! \e[0m \n";
+    } catch (\PDOException $th) {
+      echo "\033[31m Error: $th .\033[0m \n";
+    }
   }
 
   /**
