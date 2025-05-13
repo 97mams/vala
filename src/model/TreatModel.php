@@ -41,7 +41,7 @@ class TreatModel
     $status = 0;
     try {
       $db = ConnextionBdd::connect();
-      $db->query("INSERT INTO traiter (id_animale, id_traitement, status, created_at, updated_at) VALUES(".(int)$animal.", ".(int)$treatment.", ".$status.",".$date.",".$date.")");
+      $db->query("INSERT INTO traiter (id_animale, id_traitement, status, created_at, updated_at) VALUES(".(int)$animal.", ".(int)$treatment.", ".$status.",'".$date."','".$date."')");
     } catch (\PDOException $th) {
       throw new Error($th);
     }

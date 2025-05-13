@@ -48,7 +48,7 @@ class AnimalModel
     if ($verif) {
       return false;
     } else {
-      $d = $db->query('INSERT INTO animale (nom_animale, id_genre, age, id_type, created_at, update_at) Values("'.$name.'", '.(int)$genre.', '.(int)$age.', '.(int)$type.', '.$createdAt.' '.$updatedAt.')');
+      $d = $db->query('INSERT INTO animale (nom_animale, id_genre, age, id_type, created_at, updated_at) Values("'.$name.'", '.(int)$genre.', '.(int)$age.', '.(int)$type.', "'.$createdAt.'", "'.$updatedAt.'")');
       return true;
     }
     try {
@@ -60,10 +60,9 @@ class AnimalModel
   public function update($request):bool
   {
     $db = ConnextionBdd::connect();
+    $date = date("y-m-d H:m:s", time());
     try {
-      $d = $db->query('UPDATE animale 
-                  SET nom_animale="'.$request->get('nom_animale').'"
-                  WHERE id_animale='.(int)$request->get('id_animale'));
+      $d = $db->query("UPDATE animale  SET nom_animale='".$request->get('name')."', updated_at='".$date."' WHERE id_animale=".(int)$request->get('id'));
       return true;
     } catch (\PDOException $th) {
       throw $th->getMessage();

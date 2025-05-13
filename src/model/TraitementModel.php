@@ -51,7 +51,7 @@ class TraitementModel
     $duration = $request->get('duration');
     $breed = $request->get('idBreed');
     try {
-      $db->query('INSERT INTO traitement(type,nom_traitement, description, duree, id_type, created_at, updated_at) VALUES ("'.$type.'","'.$name.'", "'.$description.'", '.(int)$duration.', '.(int)$breed.','.$date.','.$date.')');
+      $db->query('INSERT INTO traitement(type,nom_traitement, description, duree, id_type, created_at, updated_at) VALUES ("'.$type.'","'.$name.'", "'.$description.'", '.(int)$duration.', '.(int)$breed.',"'.$date.'","'.$date.'")');
       return true;
     } catch (\PDOException $th) {
       throw new Error($th);
