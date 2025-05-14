@@ -29,18 +29,19 @@ ob_start();
         </tr>
       </thead>
       <tbody>
-        <?php 
+      <?php
       foreach ($treatments as $treatment) {
-        if( (int)$treatment['status'] === 0) {
+        if(!$treatment['status']) {
           $status = '<form action="/treat/status" method="post">
-          <input type="hidden" value="'.$animal["id_animale"].'" name="id_animal">
+          <input type="hidden" value="'.$treatment["id_animale"].'" name="id_animal">
+          <input type="hidden" value="'.$treatment["id_traiter"].'" name="id_treat">
             <button type="submit" class="m-auto h-9 px-4 py-2 bg-orange-300 cursor-pointer text-orange-500 shadow-sm hover:bg-orange-500 hover:text-orange-300 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#a1a1a1] disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0">
               a compilie
             </button>
           </form>';
         }
         echo '
-        <tr class="m-0 border-t p-0 even:bg-[oklch(0.97 0 0)]"> 
+        <tr class="m-0 border-t p-0 even:bg-[oklch(0.97 0 0)]">
         <td  class="border border-[#171717] px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
                 '.$treatment['type'].'
                 </td>
@@ -74,7 +75,6 @@ ob_start();
         <?php 
       foreach ($storys as $story) {
         if( (int)$treatment['status'] === 0) {
-          
           echo '
           <tr class="m-0 border-t p-0 even:bg-[oklch(0.97 0 0)]"> 
           <td  class="border border-[#171717] px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
