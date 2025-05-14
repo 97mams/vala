@@ -24,7 +24,7 @@ ob_start();
         <tr>
           <th class="border border-[#171717]">Vaccin</th>
           <th class="border border-[#171717]">Description</th>
-          <th class="border border-[#171717]">Date</th>
+          <th class="border border-[#171717]">Durée (mois)</th>
           <th class="border border-[#171717]">Status</th>
         </tr>
       </thead>
@@ -59,6 +59,41 @@ ob_start();
       </tbody>
     </table>
     </div>
+
+    <div class="w-full">
+    <h3 class="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">Historique</h3>
+    <table class="w-full border border-[#171717]">
+      <thead>
+        <tr>
+          <th class="border border-[#171717]">Type</th>
+          <th class="border border-[#171717]">Description</th>
+          <th class="border border-[#171717]">Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php 
+      foreach ($storys as $story) {
+        if( (int)$treatment['status'] === 0) {
+          
+          echo '
+          <tr class="m-0 border-t p-0 even:bg-[oklch(0.97 0 0)]"> 
+          <td  class="border border-[#171717] px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
+                '.$treatment['type'].'
+                </td>
+              <td  class="border border-[#171717] px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
+                '.$treatment['description'].'
+                </td>
+              <td  class="border border-[#171717] px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
+                '.$treatment['duree'].'
+              </td>
+            </tr>';
+          }
+        }
+        ?>
+      </tbody>
+    </table>
+    </div>
+
   </div>
   
   <?php
