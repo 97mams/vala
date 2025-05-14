@@ -1,6 +1,7 @@
 <?php
 $action = "";
 $title = "";
+$defaultValue = false;
 if(empty($animal['id_animale'])) {
   if (isset($_GET['error'])) {
     $animal = $_GET;
@@ -16,6 +17,7 @@ if(empty($animal['id_animale'])) {
   $action = "/store";
   $title = "Page d'ajout";
 } else {
+  $defaultValue= true;
   $action = "/update";
   $title = "Page d'édite";
 }
@@ -45,7 +47,9 @@ if(empty($animal['id_animale'])) {
       required
       >
       <?php 
-      echo '<option value="'.$animal['id_genre'].'">'.$animal["nom_genre"].'</option>';
+      if ($defaultValue) {
+        echo '<option value="'.$animal['id_genre'].'">'.$animal["nom_genre"].'</option>';
+      }
       foreach ($genre as $value) {
         echo '<option value="'.$value['id_genre'].'">'.$value["nom_genre"].'</option>';
       }
@@ -60,7 +64,9 @@ if(empty($animal['id_animale'])) {
       required
       >
       <?php 
-      echo '<option value="'.$animal['id_type'].'">'.$animal["nom_type"].'</option>';
+      if ($defaultValue) {
+        echo '<option value="'.$animal['id_type'].'">'.$animal["nom_type"].'</option>';
+      }
       foreach ($type as $value) {
         echo '<option value="'.$value['id_type'].'">'.$value["nom_type"].'</option>';
       }
