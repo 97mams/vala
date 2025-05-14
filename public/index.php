@@ -133,7 +133,7 @@ $app->get('/treatment/delete/{id}', function ($id)
 
 $app->post('/treat/status', function (Request $request)
 {
-  $model = (new TreatModel())->updateStatus($request->get('id_animal'));
+  $model = (new TreatModel())->updateStatus($request->get('id_treat'));
   return new RedirectResponse('/animal/'.$request->get('id_animal'));
 });
 

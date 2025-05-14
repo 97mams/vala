@@ -47,13 +47,13 @@ class TreatModel
     }
   }
 
-  public function updateStatus($idAnimal)
+  public function updateStatus($idTreat)
   {
     $date = date("y-m-d H:m:s", time());
     $status = 1;
     try {
       $db = ConnextionBdd::connect();
-      $db->query('UPDATE traiter SET status ='.$status.' , updated_at="'.$date.'" WHERE id_animale ='.(int)$idAnimal);
+      $db->query('UPDATE traiter SET status ='.$status.' , updated_at="'.$date.'" WHERE id_traiter ='.(int)$idTreat);
     } catch (\PDOException $th) {
       throw new Error($th);
     } 
