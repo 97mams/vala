@@ -49,10 +49,11 @@ class TreatModel
 
   public function updateStatus($idAnimal)
   {
+    $date = date("y-m-d H:is", time());
     $status = 1;
     try {
       $db = ConnextionBdd::connect();
-      $db->query('UPDATE traiter SET status ='.$status.' WHERE id_animale ='.(int)$idAnimal);
+      $db->query('UPDATE traiter SET status ='.$status.' , updated_at="'.$date.'" WHERE id_animale ='.(int)$idAnimal);
     } catch (\PDOException $th) {
       throw new Error($th);
     } 
