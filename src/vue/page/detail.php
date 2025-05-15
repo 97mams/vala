@@ -1,6 +1,7 @@
 <?php
 
 $title = $animal['nom_animale'];
+
 function status(array $treatment): string
 {
   if ($treatment['status']) {
@@ -17,6 +18,24 @@ function status(array $treatment): string
           </form>';
   }
 };
+
+
+function card(array $animal):string
+{
+  return'
+  <div class="rounded-xl border bg-card text-card-foreground shadow">
+    <div class="flex flex-col space-y-1.5 p-6">
+      <div class="font-semibold leading-none tracking-tight">'.$animal['type'].'</div>
+    </div>
+    <div class="p-6 pt-0">  
+      <p class="leading-7">jours de rappel: '.$animal['duree'].' jours</p>
+      <p class="leading-7">Déscription: '.$animal['description'].'</p>
+      '.status($animal).'
+    </div>
+  </div>
+  ';
+}
+
 ob_start();
 ?>
 <div class="w-full pt-8">
@@ -31,9 +50,18 @@ ob_start();
       </p>'  
     ?>
   </div>
+
+
   <div class="w-full">
     <h3 class="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">Traitement</h3>
-    <table class="w-full border border-[#171717]">
+    <div class="flex gap-2">
+    <?php 
+    foreach ($treatments as $treatment) {
+      echo card($treatment);
+    }
+    ?>
+    </div>
+    <!-- <table class="w-full border border-[#171717]">
       <thead>
         <tr>
           <th class="border border-[#171717]">Vaccin</th>
@@ -63,7 +91,7 @@ ob_start();
           }
         ?>
       </tbody>
-    </table>
+    </table> -->
     </div>
 
     <div class="w-full">
@@ -102,6 +130,7 @@ ob_start();
   </div>
   
   <?php
+
   $content = ob_get_clean();
   require '../src/vue/layouts/base.php';
   ?>
