@@ -10,9 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 class AnimalController
 {
 
-  public function cowBreed($id)
+  public function cowBreed($id):array
   {
-    
+    //
+    return [];
   }
 
   public function treatStore(string $nameAnimal, int $idBreed):void
