@@ -88,8 +88,10 @@ $app->post('/animal', function (Request $request)
 
 $app->get('/animal/{id}', function ($id)
 {
+  $treatment = new TreatModel();
   $animal = (new AnimalModel())->getAnimalById((int)$id);
-  $treatments = (new TreatModel())->getTreatByAnimal($id);
+  $treatments = $treatment->getTreatByAnimal($id);
+  $storys = $treatment->getTreatByUpdatedAt($id);
 
   require '../src/vue/page/detail.php';
   return new Response();

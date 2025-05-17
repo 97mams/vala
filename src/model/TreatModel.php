@@ -30,6 +30,21 @@ class TreatModel
   }
 
   /**
+   * get animals story
+   * 
+   */
+  public function getTreatByUpdatedAt(int $id):array
+  {
+    try {
+      $db = ConnextionBdd::connect();
+      $query = $db->query("SELECT * FROM traiter JOIN traitement on traiter.id_traitement=traitement.id_traitement  WHERE traiter.id_animale=".$idAnimal);
+      return $query->fetchAll();
+    } catch (\PDOException $th) {
+      throw new Error($th);
+    }
+  }
+
+  /**
    * 
    * @param int $animal
    * @param int $treatment
