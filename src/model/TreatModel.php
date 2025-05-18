@@ -37,7 +37,7 @@ class TreatModel
   {
     try {
       $db = ConnextionBdd::connect();
-      $query = $db->query("SELECT * FROM traiter JOIN traitement on traiter.id_traitement=traitement.id_traitement  WHERE traiter.id_animale=".$idAnimal);
+      $query = $db->query("SELECT * FROM traiter JOIN traitement on traiter.id_traitement=traitement.id_traitement  WHERE traiter.id_animale=".$id);
       return $query->fetchAll();
     } catch (\PDOException $th) {
       throw new Error($th);
