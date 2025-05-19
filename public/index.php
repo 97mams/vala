@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set('Indian/Antananarivo');
+
 require "../vendor/autoload.php";
 
 use App\controller\AnimalController;
