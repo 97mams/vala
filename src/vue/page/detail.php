@@ -2,6 +2,17 @@
 
 $title = $animal['nom_animale'];
 
+function formatedDate(string $date): string
+{
+  $setdate = new DateTime($date, new DateTimeZone("Indian/Antananarivo"));
+  return IntlDateFormatter::formatObject(
+    $setdate,
+    "eeee d MMMM y",
+    'fr'
+  );
+
+}
+
 function status(array $treatment): string
 {
   if ($treatment['status']) {
@@ -43,9 +54,10 @@ ob_start();
   <div>
     <?php
     echo '<p class="leading-7 [&:not(:first-child)]:mt-6">
-    <strong>Nom(marque)</strong>: '.$animal['nom_animale'].' <br>
-    <strong>Genre</strong>: '.$animal['nom_genre'].' <br>
-    <strong>Type</strong>: '.$animal['nom_type'].' <br>
+    <strong>Nom(marque)</strong>: '.ucwords($animal['nom_animale']).' <br>
+    <strong>Genre</strong>: '.ucfirst($animal['nom_genre']).' <br>
+    <strong>Type</strong>: '.ucfirst($animal['nom_type']).' <br>
+    <strong>Date d\'arrivé (de naissance)</strong>: '.formatedDate($animal['created_at']).' <br>
       <strong>Age</strong>: '.$animal['age'].'
       </p>'  
     ?>
@@ -107,21 +119,19 @@ ob_start();
       <tbody>
         <?php 
       foreach ($storys as $story) {
-        if( (int)$treatment['status'] === 0) {
-          echo '
+         echo '
           <tr class="m-0 border-t p-0 even:bg-[oklch(0.97 0 0)]"> 
           <td  class="border border-[#171717] px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
-                '.$treatment['type'].'
+                '.$story['type'].'
                 </td>
               <td  class="border border-[#171717] px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
-                '.$treatment['description'].'
+                '.$story['description'].'
                 </td>
               <td  class="border border-[#171717] px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
-                '.$treatment['duree'].'
+                '.ucwords(formatedDate($story['updated_at'])).'
               </td>
             </tr>';
           }
-        }
         ?>
       </tbody>
     </table>
