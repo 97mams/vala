@@ -2,6 +2,8 @@
 
 namespace App\config;
 
+use App\Error\HandelError;
+
 class ConnextionBdd 
 {
   private static $instance = null;
@@ -10,7 +12,7 @@ class ConnextionBdd
   {
   }
   
-  public static function connect() :\PDO
+  public static function connect()
   {
     $env = parse_ini_file('../.env');
     $dbName = $env['DB_NAME'];
@@ -20,12 +22,12 @@ class ConnextionBdd
     $dsn = "mysql:dbname=" . $dbName . ";host=".$host ;
     try {
       $connect = new \PDO($dsn, $user, $pwd);
+      return $connect;
     } 
     catch (\PDOException $th) {
-      echo $th->getMessage();
+      echo HandelError::get($th);
     }
 
-    return $connect;
   }
 
   public static function getInstance():\PDO
