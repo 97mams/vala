@@ -6,6 +6,7 @@ require "../vendor/autoload.php";
 
 use App\controller\AnimalController;
 use App\controller\TreamentController;
+use App\controller\TreatController;
 use App\model\AnimalModel;
 use App\model\GenreModel;
 use App\model\TraitementModel;
@@ -92,7 +93,7 @@ $app->get('/animal/{id}', function ($id)
 {
   $treatment = new TreatModel();
   $animal = (new AnimalModel())->getAnimalById((int)$id);
-  $treatments = $treatment->getTreatByAnimal($id);
+  $treatments = (new TreatController())->getAnimalById($id);
   $storys = $treatment->getTreatByUpdatedAt($id);
 
   require '../src/vue/page/detail.php';

@@ -14,7 +14,7 @@ class HandelError extends Error
     $result = "";
     if($error instanceof \PDOException){
       $result = '
-      <div style="border:red 1px solid; ">
+      <div style="border:red 1px solid; border-raduis: 5px">
         <p class="text-red-400 leading-7 [&:not(:first-child)]:mt-6"> Start your mysql server.</p>
       </div>';
     }
