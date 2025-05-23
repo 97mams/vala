@@ -1,20 +1,14 @@
 <?php
 
+use App\controller\DayController;
+
 $title = $animal['nom_animale'];
-
-function formatedDate(string $date): string
+$day = new DayController();
+function status(array $treatment, DayController $day): string
 {
-  $setdate = new DateTime($date, new DateTimeZone("Indian/Antananarivo"));
-  return IntlDateFormatter::formatObject(
-    $setdate,
-    "eeee d MMMM y",
-    'fr'
-  );
-
-}
-
-function status(array $treatment): string
-{
+  $numberForDayTreatement = (int)$treatment['duree'] - 5;
+  $show = $numberForDayTreatement - $day->dayInterval($treatment["created_at"]);
+  $isDisable = ($show <= 0)? "": "disabled";
   if ($treatment['status']) {
     return '<button class="m-auto w-full h-9 px-4 py-2 bg-green-300 text-green-700 shadow-sm inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ">
             fait
@@ -23,7 +17,8 @@ function status(array $treatment): string
     return '<form action="/treat/status" method="post">
           <input type="hidden" value="'.$treatment["id_animale"].'" name="id_animal">
           <input type="hidden" value="'.$treatment["id_traiter"].'" name="id_treat">
-            <button type="submit" class="m-auto  w-full h-9 px-4 py-2 bg-orange-300 cursor-pointer text-orange-500 shadow-sm hover:bg-orange-500 hover:text-orange-300 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#a1a1a1] disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0">
+          <input type="hidden" value="'.$treatment["id_traitement"].'" name="id_treatment">
+            <button type="submit" '.$isDisable.' class="m-auto  w-full h-9 px-4 py-2 bg-orange-300 cursor-pointer text-orange-500 shadow-sm hover:bg-orange-500 hover:text-orange-300 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#a1a1a1] disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0">
               a compilie
             </button>
           </form>';
@@ -31,7 +26,7 @@ function status(array $treatment): string
 };
 
 
-function card(array $animal):string
+function card(array $animal, DayController $day):string
 {
   return'
   <div class="rounded-xl border bg-card text-card-foreground shadow">
@@ -39,9 +34,9 @@ function card(array $animal):string
       <div class="font-semibold leading-none tracking-tight">'.$animal['type'].'</div>
     </div>
     <div class="p-6 pt-0">  
-      <p class="leading-7">jours de rappel: '.$animal['duree'].' jours</p>
+      <p class="leading-7">jours de rappel: '.$animal['duree'] - $day->dayInterval($animal['created_at']).' jours</p>
       <p class="leading-7">Déscription: '.$animal['description'].'</p>
-      '.status($animal).'
+      '.status($animal, $day).'
     </div>
   </div>
   ';
@@ -57,7 +52,7 @@ ob_start();
     <strong>Nom(marque)</strong>: '.ucwords($animal['nom_animale']).' <br>
     <strong>Genre</strong>: '.ucfirst($animal['nom_genre']).' <br>
     <strong>Type</strong>: '.ucfirst($animal['nom_type']).' <br>
-    <strong>Date d\'arrivé (de naissance)</strong>: '.formatedDate($animal['created_at']).' <br>
+    <strong>Date d\'arrivé (de naissance)</strong>: '.$day->formatedDate($animal['created_at']).' <br>
       <strong>Age</strong>: '.$animal['age'].'
       </p>'  
     ?>
@@ -69,7 +64,7 @@ ob_start();
     <div class="flex gap-2">
     <?php 
     foreach ($treatments as $treatment) {
-      echo card($treatment);
+      echo card($treatment, $day);
     }
     ?>
     </div>
@@ -97,7 +92,7 @@ ob_start();
                 '.$treatment['duree'].'
               </td>
               <td  class="border border-[#171717] px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
-                '.status($treatment).'
+                '.status($treatment, $day).'
               </td>
             </tr>';
           }
@@ -128,7 +123,7 @@ ob_start();
                 '.$story['description'].'
                 </td>
               <td  class="border border-[#171717] px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
-                '.ucwords(formatedDate($story['updated_at'])).'
+                '.ucwords($day->formatedDate($story['updated_at'])).'
               </td>
             </tr>';
           }
