@@ -2,10 +2,8 @@
 
 namespace App\controller;
 
-use App\model\TraitementModel;
 use App\model\TreatModel;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\VarDumper\VarDumper;
 
 class TreatController
 {
