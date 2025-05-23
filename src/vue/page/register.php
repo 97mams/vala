@@ -6,7 +6,7 @@ ob_start();
 if (empty($type)) {
   echo ' 
   <div class="bg-red-100 border border-red-400 rounded py-8 px-4 mt-8">
-    <p class="text-red-400 leading-7 [&:not(:first-child)]:mt-6">Remplir les champs dans vos réglages.</p>
+    <p class="text-red-400 leading-7 [&:not(:first-child)]:mt-6">Remplir les champs dans vos réglages. <br> Ajouter le type d\'élévage.</p>
   </div>
   ';
 }
