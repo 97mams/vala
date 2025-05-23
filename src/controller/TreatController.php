@@ -27,7 +27,7 @@ class TreatController
   public function updateStatus(Request $request):bool
   {
     $treat =  new TreatModel();
-    $treat->store($request->get('id_animal'), $request->get('id_treat'));
+    $treat->store($request->get('id_animal'), $request->get('id_treatment'));
     $treat->updateStatus($request->get('id_treat'));
     return true;
   }
