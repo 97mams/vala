@@ -1,11 +1,11 @@
 #! /usr/bin/env php
-<?php
+<?php declare(strict_types=1);
 
 use App\CLI\CommandDoc;
 use App\CLI\Db;
 use App\seed\GenreSeed;
 
-require "./vendor/autoload.php";
+require __DIR__."./../vendor/autoload.php";
 
 $default  = new CommandDoc();
 $database = new Db();

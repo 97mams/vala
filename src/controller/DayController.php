@@ -23,6 +23,7 @@ class DayController
     );
 
     }
+    
   /**
    *day interval
    *@param string $date format("y-m-d")
