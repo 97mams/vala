@@ -22,7 +22,21 @@ class TreatModel
   {
     try {
       $db = ConnextionBdd::connect();
-      $query = $db->query("SELECT * FROM traiter JOIN traitement on traiter.id_traitement=traitement.id_traitement  WHERE traiter.id_animale=".$idAnimal );
+      $query = $db->query("SELECT 
+                            traitement.id_traitement,
+                            traitement.nom_traitement, 
+                            traitement.type, 
+                            traitement.description, 
+                            traitement.duree,
+                            status,
+                            traiter.id_traiter,
+                            traiter.id_animale,
+                            traiter.created_at,
+                            traiter.updated_at
+                            FROM traiter 
+                            JOIN traitement 
+                            on traiter.id_traitement=traitement.id_traitement  
+                            WHERE traiter.id_animale=".$idAnimal );
       return $query->fetchAll();
     } catch (\PDOException $th) {
       throw new Error($th);

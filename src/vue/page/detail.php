@@ -7,7 +7,8 @@ $day = new DayController();
 function status(array $treatment, DayController $day): string
 {
   $numberForDayTreatement = (int)$treatment['duree'] - 5;
-  $show = $numberForDayTreatement - $day->dayInterval($treatment["created_at"]);
+  $numberDayOff = $numberForDayTreatement - $day->dayInterval($treatment["created_at"]);
+  $show = ($day->dayInterval($treatment["updated_at"]) === 0)? $day->dayInterval($treatment["created_at"]) : $numberDayOff;
   $isDisable = ($show <= 0)? "": "disabled";
   if ($treatment['status']) {
     return '<button class="m-auto w-full h-9 px-4 py-2 bg-green-300 text-green-700 shadow-sm inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ">
@@ -53,8 +54,8 @@ ob_start();
     <strong>Genre</strong>: '.ucfirst($animal['nom_genre']).' <br>
     <strong>Type</strong>: '.ucfirst($animal['nom_type']).' <br>
     <strong>Date d\'arrivé (de naissance)</strong>: '.$day->formatedDate($animal['created_at']).' <br>
-      <strong>Age</strong>: '.$animal['age'].'
-      </p>'  
+    <strong>Age</strong>: '.$animal['age'].'
+    </p>'  
     ?>
   </div>
 
@@ -62,7 +63,7 @@ ob_start();
   <div class="w-full">
     <h3 class="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">Traitement</h3>
     <div class="flex gap-2">
-    <?php 
+    <?php
     foreach ($treatments as $treatment) {
       echo card($treatment, $day);
     }
