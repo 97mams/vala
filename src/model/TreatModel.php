@@ -28,11 +28,11 @@ class TreatModel
                             traitement.type, 
                             traitement.description, 
                             traitement.duree,
+                            traitement.created_at,
+                            traitement.updated_at,
                             status,
                             traiter.id_traiter,
-                            traiter.id_animale,
-                            traiter.created_at,
-                            traiter.updated_at
+                            traiter.id_animale
                             FROM traiter 
                             JOIN traitement 
                             on traiter.id_traitement=traitement.id_traitement  

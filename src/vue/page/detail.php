@@ -14,12 +14,7 @@ function status(array $treatment, DayController $day): string
   if ( $treatController->checkLastTreat($treatment['id_traiter'])) {
     $isDisable = ($show < 0)? "": "disabled";
    }
-  if ($treatment['status']) {
-    return '<button class="m-auto w-full h-9 px-4 py-2 bg-green-300 text-green-700 shadow-sm inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ">
-            fait
-          </button>';
-  } else {
-    return '<form action="/treat/status" method="post">
+  return '<form action="/treat/status" method="post">
           <input type="hidden" value="'.$treatment["id_animale"].'" name="id_animal">
           <input type="hidden" value="'.$treatment["id_traiter"].'" name="id_treat">
           <input type="hidden" value="'.$treatment["id_traitement"].'" name="id_treatment">
@@ -27,8 +22,7 @@ function status(array $treatment, DayController $day): string
               a compilie
             </button>
           </form>';
-  }
-};
+}
 
 
 function card(array $animal, DayController $day):string
