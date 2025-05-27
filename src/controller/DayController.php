@@ -32,7 +32,7 @@ class DayController
   function dayInterval (string $createdAt): int
   {
     $now = new \DateTimeImmutable(date("y-m-d", time()));
-    // $now = new \DateTimeImmutable("2025-06-19");
+    // $now = new \DateTimeImmutable("2025-05-28");
     $createdAt = new \DateTimeImmutable($createdAt);
     return $createdAt->diff($now)->format('%a');
   }

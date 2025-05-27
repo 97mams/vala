@@ -1,15 +1,19 @@
 <?php
 
 use App\controller\DayController;
+use App\controller\TreatController;
 
 $title = $animal['nom_animale'];
 $day = new DayController();
 function status(array $treatment, DayController $day): string
 {
+  $treatController = new TreatController();
   $numberForDayTreatement = (int)$treatment['duree'] - 5;
   $numberDayOff = $numberForDayTreatement - $day->dayInterval($treatment["created_at"]);
   $show = ($day->dayInterval($treatment["updated_at"]) === 0)? $day->dayInterval($treatment["created_at"]) : $numberDayOff;
-  $isDisable = ($show <= 0)? "": "disabled";
+  if ( $treatController->checkLastTreat($treatment['id_traiter'])) {
+    $isDisable = ($show < 0)? "": "disabled";
+   }
   if ($treatment['status']) {
     return '<button class="m-auto w-full h-9 px-4 py-2 bg-green-300 text-green-700 shadow-sm inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ">
             fait
