@@ -63,7 +63,7 @@ class TraitementModel
     $date = date("y-m-d H:m:s");
     $db = ConnextionBdd::connect();
     try {
-      $db->query('UPDATE traitement set created_at = "'.$date.'" WHERE id_traitement='.$idTreament);
+      $db->query('UPDATE traitement set updated_at = "'.$date.'" WHERE id_traitement='.$idTreament);
     } catch (\PDOException $th) {
       throw new Error( $th);
     }
