@@ -58,6 +58,17 @@ class TraitementModel
     }
   }
 
+  public function updateDate($idTreament)
+  {
+    $date = date("y-m-d H:m:s");
+    $db = ConnextionBdd::connect();
+    try {
+      $db->query('UPDATE traitement set created_at = "'.$date.'" WHERE id_traitement='.$idTreament);
+    } catch (\PDOException $th) {
+      throw new Error( $th);
+    }
+  }
+
   public function delete($id)
   {
     $db = ConnextionBdd::connect();

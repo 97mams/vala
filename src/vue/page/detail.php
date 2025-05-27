@@ -11,9 +11,9 @@ function status(array $treatment, DayController $day): string
   $numberForDayTreatement = (int)$treatment['duree'] - 5;
   $numberDayOff = $numberForDayTreatement - $day->dayInterval($treatment["created_at"]);
   $show = ($day->dayInterval($treatment["updated_at"]) === 0)? $day->dayInterval($treatment["created_at"]) : $numberDayOff;
-  if ( $treatController->checkLastTreat($treatment['id_traiter'])) {
-    $isDisable = ($show < 0)? "": "disabled";
-   }
+  $isDisable = ($show < 0)? "": "disabled";
+  dd($treatment);
+   
   return '<form action="/treat/status" method="post">
           <input type="hidden" value="'.$treatment["id_animale"].'" name="id_animal">
           <input type="hidden" value="'.$treatment["id_traiter"].'" name="id_treat">

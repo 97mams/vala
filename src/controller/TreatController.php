@@ -39,16 +39,4 @@ class TreatController
     return true;
   }
 
-  /**
-   * check last reccord treat
-   * @param int $newIdTreat
-   * @return bool
-   */
-  public function checkLastTreat($newIdTreat): bool
-  {
-    $id = $newIdTreat - 1;
-    $this->treatModel->getTreatByAnimal($id);
-    return true;
-  }
-
 }
