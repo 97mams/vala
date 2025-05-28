@@ -24,15 +24,15 @@ class TreatModel
       $db = ConnextionBdd::connect();
       $query = $db->query("SELECT 
                             traitement.id_traitement,
+                            traiter.id_traiter,
+                            traiter.id_animale,
                             traitement.nom_traitement, 
                             traitement.type, 
                             traitement.description, 
                             traitement.duree,
-                            traitement.created_at as creatde_at_treatment,
-                            traitement.updated_at as updated__at_treatment,
                             status,
-                            traiter.id_traiter,
-                            traiter.id_animale,
+                            traitement.created_at as created_at_treatment,
+                            traitement.updated_at as updated_at_treatment,
                             traiter.created_at as created_at_treat,
                             traiter.updated_at as updated_at_treat
                             FROM traiter 
