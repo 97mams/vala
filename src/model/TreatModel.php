@@ -11,8 +11,19 @@ class TreatModel
   {
     try {
       $db = ConnextionBdd::connect();
-      $query = $db->query("SELECT * FORM traiter");
+      $query = $db->query("SELECT * FROM traiter");
       return $query->fetchAll();
+    } catch (\PDOException $th) {
+      throw new Error($th);
+    }
+  }
+
+  public function countTreatByAnimalId(int $idAnimal):int
+  {
+    try {
+      $db = ConnextionBdd::connect();
+      $query = $db->query("SELECT id_animale FROM traiter WHERE id_animale = ".(int)$idAnimal);
+      return count($query->fetch());
     } catch (\PDOException $th) {
       throw new Error($th);
     }
@@ -26,6 +37,7 @@ class TreatModel
                             traitement.id_traitement,
                             traiter.id_traiter,
                             traiter.id_animale,
+                            traitement.id_type as id_breed,
                             traitement.nom_traitement, 
                             traitement.type, 
                             traitement.description, 
