@@ -34,6 +34,19 @@ class TreatController
     return $treatPendin;
   }
 
+  /**
+   * count treat by id animal
+   * @param int $idAnimal
+   * @param int $idBreed
+   * @return int
+   */
+  public function countTreat(int $idAnimal, int $idBreed):bool
+  {
+    $countTreat = $this->treatModel->countTreatByAnimalId($idAnimal);
+    $countTreatment = $this->treatmentModel->countTreatmentByIdBreed($idBreed);
+    return ($countTreat === $countTreatment) ? true : false;
+  }
+
   public function updateStatus(Request $request):bool
   {
     $treat =  $this->treatModel; 
