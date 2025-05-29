@@ -30,6 +30,17 @@ class TraitementModel
     }
   }
 
+  public function countTreatmentByIdBreed(int $idBreed):int
+  {
+    $db = ConnextionBdd::connect();
+    try {
+      $result = $db->query("SELECT id_type FROM traitement WHERE id_type=".$idBreed);
+      return count($result->fetchAll());
+    } catch (\PDOException $th) {
+      throw new Error( $th);
+    }
+  }
+
   public function getTraitementByIdBreed($idBreed):array
   {
     $db = ConnextionBdd::connect();
