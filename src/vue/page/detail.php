@@ -9,10 +9,13 @@ function status(array $treatment, DayController $day): string
 {
   $treatController = new TreatController();
   $numberForDayTreatement = (int)$treatment['duree'] - 5;
-  $numberDayOff = $numberForDayTreatement - $day->dayInterval($treatment["created_at"]);
-  $show = ($day->dayInterval($treatment["updated_at"]) === 0)? $day->dayInterval($treatment["created_at"]) : $numberDayOff;
-  $isDisable = ($show < 0)? "": "disabled";
-  dd($treatment);
+  $numberDayOff = $numberForDayTreatement - $day->dayInterval($treatment["updated_at_treatment"]);
+  $show = ($day->dayInterval($treatment["updated_at_treatment"]) === 0)? $day->dayInterval($treatment["updated_at_treatment"]) : $numberDayOff;
+  if ($treatController->countTreat($treatment['id_animale'], $treatment['id_breed'])) {
+    $isDisable = "";
+  } else {
+    $isDisable = ($show < 0)? "": "disabled";
+  }
    
   return '<form action="/treat/status" method="post">
           <input type="hidden" value="'.$treatment["id_animale"].'" name="id_animal">
@@ -33,7 +36,7 @@ function card(array $animal, DayController $day):string
       <div class="font-semibold leading-none tracking-tight">'.$animal['type'].'</div>
     </div>
     <div class="p-6 pt-0">  
-      <p class="leading-7">jours de rappel: '.$animal['duree'] - $day->dayInterval($animal['created_at']).' jours</p>
+      <p class="leading-7">jours de rappel: '.$animal['duree'] - $day->dayInterval($animal["updated_at_treatment"]).' jours</p>
       <p class="leading-7">Déscription: '.$animal['description'].'</p>
       '.status($animal, $day).'
     </div>
