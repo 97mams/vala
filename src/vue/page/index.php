@@ -3,7 +3,7 @@
 $title = "liste";
 ob_start();
 ?>
-    <div class="mt-8 my-6 w-full overflow-y-auto">
+    <div class="mt-8 my-6 w-full">
       <h1 class="mt-10 scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">Page liste</h1>
       <table class="w-full">
         <thead>

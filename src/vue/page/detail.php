@@ -49,7 +49,7 @@ function card(array $animal, DayController $day):string
 
 ob_start();
 ?>
-<div class="w-full pt-8">
+<div class="w-full pt-8 overflow-hidden">
   <h2 class="mt-10 scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">Page animal détail</h2>
   <div>
     <?php

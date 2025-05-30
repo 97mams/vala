@@ -15,17 +15,23 @@ $uri = $_SERVER['REQUEST_URI'];
 </head>
 <body>
 
-<div class=" w-full h-[4rem] border-b border-gray-200 flex items-center justify-between sticky">
+<div class=" w-full h-[4rem] border-b border-gray-300 flex items-center justify-between sticky">
   <h1 class="text-2xl font-bold ml-60">Fahitra</h1>
   <ul class="flex gap-3 mr-60">
     <li><a href="/" class="hover:underline <?php if($uri == '/') echo 'underline' ?>">liste</a></li>
     <li><a href="/register" class="hover:underline <?php if($uri == '/register') echo 'underline' ?>">ajouter</a></li>
     <li><a href="/setting" class="hover:underline <?php if($uri == '/setting') echo 'underline' ?>">Réglages</a></li>
+    <li><a href="/setting" class="hover:underline">Notification</a></li>
   </ul>
 </div>
 <div class="w-full flex">
   <div class="w-md"></div>
-  <div class="w-full min-h-[calc(100vh-10rem)]">
+  <!-- notification -->
+    <div class="border border-gray-300 bg-white px-5 w-72 h-72 z-40 flex flex-col fixed top-18 right-60 rounded ">
+      <?php include '../src/vue/page/notification.php' ?>
+    </div>
+  <!--  -->
+  <div class="w-full min-h-[calc(100vh-10rem)] z-10">
   <?php echo $content?>
   </div>
   <div class="w-md h-full"></div>
