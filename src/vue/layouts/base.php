@@ -35,8 +35,8 @@ $uri = $_SERVER['REQUEST_URI'];
   <p>building by <i class="underline">anjaniainamamisoa@gmail.com</i> <br> github <a href="https://97mams.git">97mams</a></p>
 </div>
 <script>
+  <?php include '../src/assets/js/app.js' ?>
  <?php include '../src/assets/js/tailwind.js' ?>
- <?php include '../src/assets/js/app.js' ?>
 </script>
 
 </body>
