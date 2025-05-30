@@ -21,13 +21,13 @@ $uri = $_SERVER['REQUEST_URI'];
     <li><a href="/" class="hover:underline <?php if($uri == '/') echo 'underline' ?>">liste</a></li>
     <li><a href="/register" class="hover:underline <?php if($uri == '/register') echo 'underline' ?>">ajouter</a></li>
     <li><a href="/setting" class="hover:underline <?php if($uri == '/setting') echo 'underline' ?>">Réglages</a></li>
-    <li><a href="/setting" class="hover:underline">Notification</a></li>
+    <li id="btn-notification"> <p class="cursor-pointer hover:underline">Notification</p></li>
   </ul>
 </div>
 <div class="w-full flex">
   <div class="w-md"></div>
   <!-- notification -->
-    <div class="border border-gray-300 bg-white px-5 w-72 h-72 z-40 flex flex-col fixed top-18 right-60 rounded ">
+    <div id="notification" class="hidden border border-gray-300 bg-white px-2 pb-2 w-72 z-40 fixed top-18 right-60 rounded ">
       <?php include '../src/vue/page/notification.php' ?>
     </div>
   <!--  -->
@@ -42,7 +42,7 @@ $uri = $_SERVER['REQUEST_URI'];
 </div>
 <script>
   <?php include '../src/assets/js/app.js' ?>
- <?php include '../src/assets/js/tailwind.js' ?>
+  <?php include '../src/assets/js/tailwind.js' ?>
 </script>
 
 </body>
