@@ -23,7 +23,7 @@ class TreatModel
     try {
       $db = ConnextionBdd::connect();
       $query = $db->query("SELECT id_animale FROM traiter WHERE id_animale = ".(int)$idAnimal);
-      return count($query->fetch());
+      return count($query->fetchAll());
     } catch (\PDOException $th) {
       throw new Error($th);
     }
