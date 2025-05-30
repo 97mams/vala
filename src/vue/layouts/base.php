@@ -36,6 +36,7 @@ $uri = $_SERVER['REQUEST_URI'];
 </div>
 <script>
  <?php include '../src/assets/js/tailwind.js' ?>
+ <?php include '../src/assets/js/app.js' ?>
 </script>
 
 </body>
