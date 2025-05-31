@@ -1,6 +1,7 @@
 <?php
 
 $uri = $_SERVER['REQUEST_URI'];
+$nuber = 3;
 ?>
 
 <!DOCTYPE html>
@@ -17,11 +18,16 @@ $uri = $_SERVER['REQUEST_URI'];
 
 <div class=" w-full h-[4rem] border-b border-gray-300 flex items-center justify-between sticky">
   <h1 class="text-2xl font-bold ml-60">Fahitra</h1>
-  <ul class="flex gap-3 mr-60">
+  <ul class="flex items-center gap-3 mr-60">
     <li><a href="/" class="hover:underline <?php if($uri == '/') echo 'underline' ?>">liste</a></li>
     <li><a href="/register" class="hover:underline <?php if($uri == '/register') echo 'underline' ?>">ajouter</a></li>
     <li><a href="/setting" class="hover:underline <?php if($uri == '/setting') echo 'underline' ?>">Réglages</a></li>
-    <li id="btn-notification"> <p class="cursor-pointer hover:underline">Notification</p></li>
+    <li id="btn-notification" class="cusrsor-pointer">
+      <img class="w-7 z-10" src="./notification (1).png" alt="">
+      <div class="flex absolute z-40 top-4 right-59 bg-white justify-center items-center w-5 h-5 border-2 rounded-full text-sm text-red-500 border-red-500">
+      <?=$nuber ?>
+      </div>
+    </li>
   </ul>
 </div>
 <div class="w-full flex">
