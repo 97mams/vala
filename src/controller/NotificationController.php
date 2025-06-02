@@ -3,6 +3,7 @@
 namespace App\controller;
 
 use App\model\NotificationModel;
+use Symfony\Component\HttpFoundation\Request;
 
 class NotificationController
 {
@@ -20,6 +21,16 @@ class NotificationController
   public function index():array
   {
     return $this->model->index();
+  }
+
+  /**
+   * notification register
+   * @param Request $request
+   * @return void
+   */
+  public function store(Request $request): void
+  {
+    $this->model->store($request);
   }
 
 }
