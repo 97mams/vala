@@ -10,6 +10,13 @@ class NotificationModel
   
   public function __construct()
   {
-    $this->$connectDb = ConnectionDB;
+    $this->connectDb = ConnextionBdd::connect();
+  }
+
+  public function index ():array
+  {
+    $query = $this->connectDb
+                  ->query("SELECT * FROM notification");
+
   }
 }
