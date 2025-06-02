@@ -17,6 +17,6 @@ class NotificationModel
   {
     $query = $this->connectDb
                   ->query("SELECT * FROM notification");
-
+    return $query->fetchAll();
   }
 }
