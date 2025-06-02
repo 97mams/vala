@@ -3,6 +3,7 @@
 namespace App\model;
 
 use App\config\ConnextionBdd;
+use Error;
 use Symfony\Component\HttpFoundation\Request;
 
 class NotificationModel
@@ -14,11 +15,15 @@ class NotificationModel
     $this->connectDb = ConnextionBdd::connect();
   }
 
-  public function index ():array
+  public function index ()
   {
-    $query = $this->connectDb
-                  ->query("SELECT * FROM notification");
-    return $query->fetchAll();
+    try {
+      $query = $this->connectDb
+                    ->query("SELECT * FROM notification");
+      return $query->fetchAll();
+    } catch (\PDOException $th) {
+      echo $th;
+    }
   }
 
   public function store(Request $request):void
@@ -27,7 +32,12 @@ class NotificationModel
     $description= $request->get('description');
     $status     = $request->get('status');
     $date       = date("y-m-d H:m:s");
-    $this->connectDb
-         ->query('INSERT INTO notification (nom, description, status, created_at, updated_at) VALUES("'.$name.'", "'.$description.'" ,"'.$status.'", "'.$date.'", "'.$date.'")');
+
+    try {
+      $this->connectDb
+           ->query('INSERT INTO notification (nom, description, status, created_at, updated_at) VALUES("'.$name.'", "'.$description.'" ,"'.$status.'", "'.$date.'", "'.$date.'")');
+      } catch (\PDOException $th) {
+      echo $th;
+    }
   }
 }
