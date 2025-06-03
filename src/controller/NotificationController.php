@@ -28,9 +28,12 @@ class NotificationController
    * @param Request $request
    * @return void
    */
-  public function store(Request $request): void
+  public function store(array $animal): void
   {
+    $request = new Request($animal);
     $this->model->store($request);
   }
+
+
 
 }

@@ -10,9 +10,15 @@ class TraitementModel
 
   public function index():array
   {
+    $getArgs  = func_get_args();
     $db = ConnextionBdd::connect();
+    $query = "SELECT * FROM traitement JOIN type_elevage on traitement.id_type=type_elevage.id_type";
+
+    if (!empty($getArgs)) {
+      $query = "SELECT ". GenerateFields::get($getArgs) ." FROM traitement JOIN type_elevage on traitement.id_type=type_elevage.id_type";
+    }
     try {
-      $result = $db->query("SELECT * FROM traitement JOIN type_elevage on traitement.id_type=type_elevage.id_type");
+      $result = $db->query($query);
       return $result->fetchAll();
     } catch (\PDOException $th) {
       throw new Error( $th);

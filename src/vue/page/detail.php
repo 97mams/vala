@@ -8,6 +8,8 @@ $title = $animal['nom_animale'];
 $day = new DayController();
 function status(array $treatment, DayController $day): string
 {
+  $recallDay = $day->recallDay($treatment['updated_at_treatment'], $treatment['duree']);
+  $treatment = array_merge($treatment, ['date_rappel' => $recallDay ]);
   $treatController = new TreatController();
   $notificationController = new NotificationController();
   $numberForDayTreatement = (int)$treatment['duree'] - 5;
@@ -15,7 +17,7 @@ function status(array $treatment, DayController $day): string
   $show = ($day->dayInterval($treatment["updated_at_treatment"]) === 0)? $day->dayInterval($treatment["updated_at_treatment"]) : $numberDayOff;
   $isCount = $treatController->countTreat($treatment['id_traitement']);
   if (!$isCount) {
-    
+    $notificationController->store($treatment);
     $isDisable = "";
   } else {  
     $isDisable = ($show < 0)? "": "disabled";
@@ -66,12 +68,12 @@ ob_start();
     ?>
   </div>
 
-
   <div class="w-full">
     <h3 class="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">Traitement</h3>
     <div class="flex gap-2">
     <?php
     foreach ($treatments as $treatment) {
+      $treatment = array_merge($treatment,['nom_animale' => $title]);
       echo card($treatment, $day);
     }
     ?>

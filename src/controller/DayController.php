@@ -37,4 +37,15 @@ class DayController
     return $createdAt->diff($now)->format('%a');
   }
 
+    /**
+   * sum recall day
+   * @return string
+   */
+  public function recallDay($date, $duration):string
+  {
+    $date = new \DateTime($date);
+    $date->modify("+". $duration ." days");
+    return $date->format("y-m-d H:m:s");
+  }
+
 }

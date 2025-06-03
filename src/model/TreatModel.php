@@ -9,9 +9,14 @@ class TreatModel
 {
   public function index():array
   {
+    $getArgs = func_get_args();
+    $query = "SELECT * FROM traiter JOIN traitement on traiter.id_traitement=traitement.id_traitement";
+    if(!empty($getArgs)){
+      $query ="SELECT ". GenerateFields::get($getArgs) ." FROM traiter JOIN traitement  on traiter.id_traitement=traitement.id_traitement";
+    }
     try {
       $db = ConnextionBdd::connect();
-      $query = $db->query("SELECT * FROM traiter");
+      $query = $db->query($query);
       return $query->fetchAll();
     } catch (\PDOException $th) {
       throw new Error($th);
@@ -34,23 +39,23 @@ class TreatModel
     try {
       $db = ConnextionBdd::connect();
       $query = $db->query("SELECT 
-                            traitement.id_traitement,
-                            traiter.id_traiter,
-                            traiter.id_animale,
-                            traitement.id_type as id_breed,
-                            traitement.nom_traitement, 
-                            traitement.type, 
-                            traitement.description, 
-                            traitement.duree,
-                            status,
-                            traitement.created_at as created_at_treatment,
-                            traitement.updated_at as updated_at_treatment,
-                            traiter.created_at as created_at_treat,
-                            traiter.updated_at as updated_at_treat
-                            FROM traiter 
-                            JOIN traitement 
-                            on traiter.id_traitement=traitement.id_traitement  
-                            WHERE traiter.id_animale=".$idAnimal );
+      traitement.id_traitement,
+      traiter.id_traiter,
+      traiter.id_animale,
+      traitement.id_type as id_breed,
+      traitement.nom_traitement, 
+      traitement.type, 
+      traitement.description, 
+      traitement.duree,
+      status,
+      traitement.created_at as created_at_treatment,
+      traitement.updated_at as updated_at_treatment,
+      traiter.created_at as created_at_treat,
+      traiter.updated_at as updated_at_treat
+      FROM traiter 
+      JOIN traitement 
+      on traiter.id_traitement=traitement.id_traitement  
+      WHERE traiter.id_animale=".$idAnimal);
       return $query->fetchAll();
     } catch (\PDOException $th) {
       throw new Error($th);
@@ -112,4 +117,5 @@ class TreatModel
       throw new Error( $th);
     }
   }
+  
 }

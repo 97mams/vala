@@ -4,6 +4,7 @@ namespace App\model;
 
 use App\config\ConnextionBdd;
 use App\entity\Notification;
+use Error;
 use Symfony\Component\HttpFoundation\Request;
 
 class NotificationModel
@@ -27,20 +28,20 @@ class NotificationModel
 
   public function store(Request $request):void
   {
-    $title       = $request->get('title');
-    $nameAnimal  = $request->get('name_animal');
+    $title       = $request->get('nom_traitement');
+    $nameAnimal  = $request->get('nom_animale');
     $status      = $request->get('status');
     $recallDay   = $request->get('date_rappel');
     $date        = date("y-m-d H:m:s");
-    $notification= new Notification($nameAnimal);
-    $notification->setDescription($title, $recallDay);
+    $notification= new Notification($title);
+    $notification->setDescription($nameAnimal, $recallDay);
     $description = $notification->getDescription();
 
     try {
       $this->connectDb
-           ->query('INSERT INTO notification (nom, description, status, created_at, updated_at, date_rappel) VALUES("'.$title.'", "'.$description.'" ,"'.$status.'", "'.$date.'", "'.$date.'", "'.$recallDay.'")');
+           ->query('INSERT INTO notification (titre, description, status, created_at, updated_at, date_rappel) VALUES("'.$title.'", "'.$description.'" ,"'.$status.'", "'.$date.'", "'.$date.'", "'.$recallDay.'")');
       } catch (\PDOException $th) {
-      echo $th;
+      throw new Error($th);
     }
   }
 }
