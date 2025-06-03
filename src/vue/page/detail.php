@@ -1,6 +1,7 @@
 <?php
 
 use App\controller\DayController;
+use App\controller\NotificationController;
 use App\controller\TreatController;
 
 $title = $animal['nom_animale'];
@@ -8,11 +9,13 @@ $day = new DayController();
 function status(array $treatment, DayController $day): string
 {
   $treatController = new TreatController();
+  $notificationController = new NotificationController();
   $numberForDayTreatement = (int)$treatment['duree'] - 5;
   $numberDayOff = $numberForDayTreatement - $day->dayInterval($treatment["updated_at_treatment"]);
   $show = ($day->dayInterval($treatment["updated_at_treatment"]) === 0)? $day->dayInterval($treatment["updated_at_treatment"]) : $numberDayOff;
   $isCount = $treatController->countTreat($treatment['id_traitement']);
   if (!$isCount) {
+    
     $isDisable = "";
   } else {  
     $isDisable = ($show < 0)? "": "disabled";
