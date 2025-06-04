@@ -39,9 +39,9 @@ class TreatController
    * @param int $idTreatment
    * @return int
    */
-  public function countTreat(int $idTreatment):int
+  public function countTreat(int $idTreatment, int $idAnimale):int
   {
-    return $this->treatModel->countTreatByTreatmentId($idTreatment);
+    return $this->treatModel->countTreatByTreatmentId($idTreatment, $idAnimale);
   }
 
   public function updateStatus(Request $request):bool

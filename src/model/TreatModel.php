@@ -23,11 +23,11 @@ class TreatModel
     }
   }
 
-  public function countTreatByTreatmentId(int $idTreatment):int
+  public function countTreatByTreatmentId(int $idTreatment, int $idAnimal):int
   {
     try {
       $db = ConnextionBdd::connect();
-      $query = $db->query("SELECT id_traitement FROM traiter WHERE id_traitement = ".(int)$idTreatment." AND status=1");
+      $query = $db->query("SELECT id_traitement FROM traiter WHERE id_traitement = ".(int)$idTreatment." AND id_animale = ".(int)$idAnimal ." AND status=1");
       return count($query->fetchAll());
     } catch (\PDOException $th) {
       throw new Error($th);

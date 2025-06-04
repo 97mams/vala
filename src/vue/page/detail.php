@@ -15,7 +15,8 @@ function status(array $treatment, DayController $day): string
   $numberForDayTreatement = (int)$treatment['duree'] - 5;
   $numberDayOff = $numberForDayTreatement - $day->dayInterval($treatment["updated_at_treatment"]);
   $show = ($day->dayInterval($treatment["updated_at_treatment"]) === 0)? $day->dayInterval($treatment["updated_at_treatment"]) : $numberDayOff;
-  $isCount = $treatController->countTreat($treatment['id_traitement']);
+  $isCount = $treatController->countTreat($treatment['id_traitement'], $treatment['id_animale']);
+  
   if (!$isCount) {
     $notificationController->store($treatment);
     $isDisable = "";

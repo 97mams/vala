@@ -34,7 +34,7 @@ class NotificationModel
     $recallDay   = $request->get('date_rappel');
     $date        = date("y-m-d H:m:s");
     $notification= new Notification($title);
-    $notification->setDescription($nameAnimal, $recallDay);
+    $notification->setDescription((string)$nameAnimal, $recallDay);
     $description = $notification->getDescription();
 
     try {
