@@ -32,14 +32,14 @@ $nuber = 3;
 </div>
 <div class="w-full flex">
   <div class="w-md"></div>
+  <div class="w-full min-h-[calc(100vh-10rem)] z-10">
+    <?php echo $content?>
+  </div>
   <!-- notification -->
-    <div id="notification" class="hidden border border-gray-300 bg-white px-2 pb-2 w-72 z-40 fixed top-18 right-60 rounded ">
+    <div id="notification" class="hidden border border-gray-300 bg-white px-2 pb-2 w-72 absolute max-h-[calc(100vh-10rem)] right-60 z-40 top-18  rounded ">
       <?php include '../src/vue/page/notification.php' ?>
     </div>
   <!--  -->
-  <div class="w-full min-h-[calc(100vh-10rem)] z-10">
-  <?php echo $content?>
-  </div>
   <div class="w-md h-full"></div>
 </div>
 
