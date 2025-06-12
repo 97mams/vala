@@ -4,6 +4,3 @@ const cardNotification = document.getElementById('notification')
 btnNotification.addEventListener('click', (e) => {
   cardNotification.classList.toggle('hidden')
 })
-
-/////
-fafao ito eh

@@ -9,7 +9,7 @@ use App\controller\NotificationController;
 
   foreach ($notifications as $notification) {
     echo '
-    <div class="border border-gray-300 px-3 text-sm ">
+    <div class="border-t border-gray-300 px-3 text-sm hover:gb-gray-100">
       <p>'.$notification['titre'].'</p>
       <p>'.$notification['description'].'</p>
     </div>
