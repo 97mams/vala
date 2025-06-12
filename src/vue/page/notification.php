@@ -10,7 +10,7 @@ use App\controller\NotificationController;
   foreach ($notifications as $notification) {
     echo '
     <div class="border border-gray-300 px-3 text-sm ">
-      <p>'.$notification['nom'].'</p>
+      <p>'.$notification['titre'].'</p>
       <p>'.$notification['description'].'</p>
     </div>
     ';
