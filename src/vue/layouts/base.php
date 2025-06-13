@@ -31,13 +31,16 @@ $nuber = 3;
   </ul>
 </div>
 <div class="w-full flex">
-  <div class="w-md"></div>
+  <div class="md:w-md"></div>
   <div class="w-full min-h-[calc(100vh-10rem)] z-10">
     <?php echo $content?>
   </div>
   <!-- notification -->
-    <div id="notification" class="hidden border border-gray-300 bg-white px-2 pb-2 w-72 absolute max-h-[calc(100vh-10rem)] right-60 z-40 top-18  rounded ">
-      <?php include '../src/vue/page/notification.php' ?>
+    <div id="notification" class="hidden border border-gray-300 bg-white px-2 pb-2 w-90 absolute right-60 z-40 top-18  rounded ">
+      <h1 class="font-bold leading-7 [&:not(:first-child)]:mt-6"># notification</h1>
+      <div class="w-full max-h-[calc(100vh-10rem)] overflow-auto">
+        <?php include '../src/vue/page/notification.php' ?>
+      </div>
     </div>
   <!--  -->
   <div class="w-md h-full"></div>
