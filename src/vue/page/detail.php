@@ -18,7 +18,7 @@ function status(array $treatment, DayController $day): string
   $isCount = $treatController->countTreat($treatment['id_traitement'], $treatment['id_animale']);
   
   if (!$isCount) {
-    $notificationController->store($treatment);
+    // $notificationController->store($treatment);
     $isDisable = "";
   } else {  
     $isDisable = ($show < 0)? "": "disabled";
