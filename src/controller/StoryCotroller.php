@@ -13,7 +13,6 @@ class StoryCotroller
     $this->modelSotry = new StoryModel();
   }
 
-
   public function index(string $nameAnimal):array
   {
     $model = $this->modelSotry;
