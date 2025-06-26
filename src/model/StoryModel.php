@@ -2,12 +2,17 @@
 
 namespace App\model;
 
+use App\config\ConnextionBdd;
 use Symfony\Component\HttpFoundation\Request;
 
 class StoryModel
 {
+  /** connect db */
+  private $db;
 
-  public function __construct(){}
+  public function __construct(){
+    $this->db = ConnextionBdd::connect();
+  }
 
   /**
    * get story for a bread by idBread
@@ -26,7 +31,7 @@ class StoryModel
    */
   public function store(Request $request):void
   {
-    //
+    
   }
 
 }
