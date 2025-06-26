@@ -19,9 +19,14 @@ class StoryModel
    * @param int $idbread
    * @return array [breads]
    */
-  public function getStory(int $IdBread): array
+  public function getStory( $nameAnimal)
   {
-    //
+    try {
+      $hitoriques = $this->db->query('SELECT nomAnimale, nomTreament FROM historiques where nomAnimale = "'. $nameAnimal .'" ');
+      return $hitoriques->fetchAll();
+    } catch (\PDOException $th) {
+      echo $th;
+    }
   }
 
   /**
@@ -31,7 +36,14 @@ class StoryModel
    */
   public function store(Request $request):void
   {
-    
+    $nameTreatment = $request->get('nameTreatmen');
+    $nameAnimal    = $request->get('nameAnimal');
+    try {
+      $this->db->query('INSERT INTO historiques (nom_traitment, nom_animale, date_traitement) 
+      VALUES("'. $nameAnimal .'", "'.$nameTreatment.'")');
+    } catch (\PDOException $th) {
+      echo $th;
+    }
   }
 
 }
