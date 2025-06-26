@@ -10,13 +10,14 @@ class StoryModel
   /** connect db */
   private $db;
 
-  public function __construct(){
+  public function __construct()
+  {
     $this->db = ConnextionBdd::connect();
   }
 
   /**
    * get story for a bread by idBread
-   * @param int $idbread
+   * @param string $nameAnimal
    * @return array [breads]
    */
   public function getStory( $nameAnimal)
