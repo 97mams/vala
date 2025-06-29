@@ -23,7 +23,7 @@ class StoryModel
   public function getStory( $nameAnimal)
   {
     try {
-      $hitoriques = $this->db->query('SELECT nomAnimale, nomTreament FROM historiques where nomAnimale = "'. $nameAnimal .'" ');
+      $hitoriques = $this->db->query('SELECT nom_animale, nom_traitement FROM historiques where nom_animale = "'. $nameAnimal .'" ');
       return $hitoriques->fetchAll();
     } catch (\PDOException $th) {
       echo $th;

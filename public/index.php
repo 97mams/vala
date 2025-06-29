@@ -5,6 +5,7 @@ date_default_timezone_set('Indian/Antananarivo');
 require "../vendor/autoload.php";
 
 use App\controller\AnimalController;
+use App\controller\StoryCotroller;
 use App\controller\TreamentController;
 use App\controller\TreatController;
 use App\model\AnimalModel;
@@ -91,11 +92,11 @@ $app->post('/animal', function (Request $request)
 
 $app->get('/animal/{nameAnimal}/{id}', function ($nameAnimal,$id)
 {
-  dd($nameAnimal, $id);
   $treatment = new TreatModel();
+  $storysController = new StoryCotroller();
   $animal = (new AnimalModel())->getAnimalById((int)$id);
   $treatments = (new TreatController())->getAnimalById($id);
-  // $storys = $treatment->getTreatByUpdatedAt($id);
+  $storys = $storysController->index($nameAnimal,$id);
 
   require '../src/vue/page/detail.php';
   return new Response();
