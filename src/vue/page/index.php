@@ -31,7 +31,7 @@ ob_start();
           echo '
           <tr class="m-0  p-0 even:bg-[oklch(0.97 0 0)]"> 
             <td  class="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
-              <a href="/animal/'.$animal["id_animale"].'">
+              <a href="/animal/'.$animal['nom_animale'].'/'.$animal["id_animale"].'">
                 '.$animal['nom_animale'].'
               </a>
              </td>

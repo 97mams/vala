@@ -89,12 +89,13 @@ $app->post('/animal', function (Request $request)
   return new RedirectResponse('/');
 });
 
-$app->get('/animal/{id}', function ($id)
+$app->get('/animal/{nameAnimal}/{id}', function ($nameAnimal,$id)
 {
+  dd($nameAnimal, $id);
   $treatment = new TreatModel();
   $animal = (new AnimalModel())->getAnimalById((int)$id);
   $treatments = (new TreatController())->getAnimalById($id);
-  $storys = $treatment->getTreatByUpdatedAt($id);
+  // $storys = $treatment->getTreatByUpdatedAt($id);
 
   require '../src/vue/page/detail.php';
   return new Response();
