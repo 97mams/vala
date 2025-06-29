@@ -90,13 +90,13 @@ $app->post('/animal', function (Request $request)
   return new RedirectResponse('/');
 });
 
-$app->get('/animal/{nameAnimal}/{id}', function ($nameAnimal,$id)
+$app->get('/animal/{nameAnimal}/{id}', function ($id)
 {
   $treatment = new TreatModel();
   $storysController = new StoryCotroller();
   $animal = (new AnimalModel())->getAnimalById((int)$id);
   $treatments = (new TreatController())->getAnimalById($id);
-  $storys = $storysController->index($nameAnimal,$id);
+  $storys = $storysController->index($id);
 
   require '../src/vue/page/detail.php';
   return new Response();
@@ -140,8 +140,9 @@ $app->get('/treatment/delete/{id}', function ($id)
 
 $app->post('/treat/status', function (Request $request)
 {
-  (new TreatController())->updateStatus($request);
-  return new RedirectResponse('/animal/'.$request->get('id_animal'));
+  (new StoryCotroller())->store($request);
+  // (new TreatController())->updateStatus($request);
+  return new RedirectResponse('/animal/'.$request->get('name_animal').'/'.$request->get('id_animal'));
 });
 
 $app->run();

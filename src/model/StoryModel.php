@@ -16,14 +16,14 @@ class StoryModel
   }
 
   /**
-   * get story for a bread by idBread
-   * @param string $nameAnimal
+   * get story for a bread by idAnimal
+   * @param string $idAnimal
    * @return array [breads]
    */
-  public function getStory( $nameAnimal)
+  public function getStory( $idAnimal)
   {
     try {
-      $hitoriques = $this->db->query('SELECT nom_animale, nom_traitement FROM historiques where nom_animale = "'. $nameAnimal .'" ');
+      $hitoriques = $this->db->query("SELECT nom_traitement, description, date_traiter FROM historiques where id_animale = ". $idAnimal);
       return $hitoriques->fetchAll();
     } catch (\PDOException $th) {
       echo $th;
@@ -37,11 +37,13 @@ class StoryModel
    */
   public function store(Request $request):void
   {
-    $nameTreatment = $request->get('nameTreatmen');
-    $nameAnimal    = $request->get('nameAnimal');
+    $nameTreatment = $request->get('nom_traitement');
+    $idAnimal      = $request->get('id_animal');
+    $description   = $request->get('description');
+    $date          = $request->get('date');
     try {
-      $this->db->query('INSERT INTO historiques (nom_traitment, nom_animale, date_traitement) 
-      VALUES("'. $nameAnimal .'", "'.$nameTreatment.'")');
+      $this->db->query('INSERT INTO historiques (id_animale, nom_traitement, date_traiter, description) 
+      VALUES('. $idAnimal .', "'.$nameTreatment.'", "'.$date.'", "'.$description.'")');
     } catch (\PDOException $th) {
       echo $th;
     }

@@ -3,6 +3,7 @@
 namespace App\controller;
 
 use App\model\StoryModel;
+use Symfony\Component\HttpFoundation\Request;
 
 class StoryCotroller
 {
@@ -13,10 +14,17 @@ class StoryCotroller
     $this->modelSotry = new StoryModel();
   }
 
-  public function index(string $nameAnimal):array | null
+  public function index(int $idAnimal):array | null
   {
     $model = $this->modelSotry;
-    return $model->getStory($nameAnimal);
+    return $model->getStory($idAnimal);
+  }
+
+  public function store(Request $request): bool
+  {
+    $model = $this->modelSotry;
+    $model->store($request);
+    return true;
   }
 
 }

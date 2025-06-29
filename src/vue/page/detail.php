@@ -23,11 +23,14 @@ function status(array $treatment, DayController $day): string
   } else {  
     $isDisable = ($show < 0)? "": "disabled";
   }
-
   return '<form action="/treat/status" method="post">
           <input type="hidden" value="'.$treatment["id_animale"].'" name="id_animal">
+          <input type="hidden" value="'.$treatment["nom_animale"].'" name="name_animal">
           <input type="hidden" value="'.$treatment["id_traiter"].'" name="id_treat">
           <input type="hidden" value="'.$treatment["id_traitement"].'" name="id_treatment">
+          <input type="hidden" value="'.$treatment["description"].'" name="description">
+          <input type="hidden" value="'.$treatment["nom_traitement"].'" name="nom_traitement">
+          <input type="hidden" value="'.$treatment["updated_at_treatment"].'" name="date">
             <button type="submit" '.$isDisable.' class="m-auto  w-full h-9 px-4 py-2 bg-orange-300 cursor-pointer text-orange-500 shadow-sm hover:bg-orange-500 hover:text-orange-300 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#a1a1a1] disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0">
               a compilie
             </button>
@@ -128,13 +131,13 @@ ob_start();
          echo '
           <tr class="m-0 border-t p-0 even:bg-[oklch(0.97 0 0)]"> 
           <td  class="border border-[#171717] px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
-                '.$story['type'].'
+                '.$story['nom_traitement'].'
                 </td>
               <td  class="border border-[#171717] px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
                 '.$story['description'].'
                 </td>
               <td  class="border border-[#171717] px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
-                '.ucwords($day->formatedDate($story['updated_at'])).'
+                '.ucwords($day->formatedDate($story['date_traiter'])).'
               </td>
             </tr>';
           }
