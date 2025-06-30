@@ -141,7 +141,7 @@ $app->get('/treatment/delete/{id}', function ($id)
 $app->post('/treat/status', function (Request $request)
 {
   (new StoryCotroller())->store($request);
-  // (new TreatController())->updateStatus($request);
+  (new TreatController())->updateStatus($request);
   return new RedirectResponse('/animal/'.$request->get('name_animal').'/'.$request->get('id_animal'));
 });
 
