@@ -13,6 +13,7 @@
         }
     ],
     "require": {
-        "silex/silex": "^2.3"
+        "silex/silex": "^2.3",
+      "ext-pdo": "*"
     }
 }
