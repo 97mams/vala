@@ -51,10 +51,6 @@ class AnimalModel
       $d = $db->query('INSERT INTO animale (nom_animale, id_genre, age, id_type, created_at, updated_at) Values("'.$name.'", '.(int)$genre.', '.(int)$age.', '.(int)$type.', "'.$createdAt.'", "'.$updatedAt.'")');
       return true;
     }
-    try {
-    } catch (\Throwable $th) {
-     throw new Error($th);
-    }
   }
 
   public function update($request):bool
@@ -65,14 +61,15 @@ class AnimalModel
       $d = $db->query("UPDATE animale  SET nom_animale='".$request->get('name')."', updated_at='".$date."' WHERE id_animale=".(int)$request->get('id'));
       return true;
     } catch (\PDOException $th) {
-      throw $th->getMessage();
+      echo $th;
     }
+    return false;
   }
 
-  public function delete($id)
+  public function delete(int $id):void
   {
     $db = ConnextionBdd::connect();
-    $query = $db->query("DELETE FROM animale where id_animale = ".(int)$id );
+    $db->query("DELETE FROM animale where id_animale = ".$id );
   }
 
   private function uniqueNameAnimal(string $name):bool
