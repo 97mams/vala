@@ -36,7 +36,7 @@ class Db
   }
 
   /**
-   * create an column reccord
+   * create an column record
    * @param string $tableName
    */
   public function createTable(string $tableName):void
