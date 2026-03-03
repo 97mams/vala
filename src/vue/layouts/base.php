@@ -16,7 +16,7 @@ $nuber = 3;
 </head>
 <body>
 
-<div class=" w-full h-[4rem] border-b border-gray-300 flex items-center justify-between sticky">
+<div class=" w-full h-[4rem] border-b-2 border-gray-500 flex items-center justify-between sticky">
   <h1 class="text-2xl font-bold ml-60">Fahitra</h1>
   <ul class="flex items-center gap-3 mr-60">
     <li><a href="/" class="hover:underline <?php if($uri == '/') echo 'underline' ?>">liste</a></li>
@@ -49,9 +49,9 @@ $nuber = 3;
 <div class="w-full h-[4rem] mt-8 bg-[#171717] text-sm text-[#fafafa] text-center flex items-center justify-center">
   <p>building by <i class="underline">anjaniainamamisoa@gmail.com</i> <br> github <a href="https://97mams.git">97mams</a></p>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 <script>
   <?php include '../src/assets/js/app.js' ?>
-  <?php include '../src/assets/js/tailwind.js' ?>
 </script>
 
 </body>
