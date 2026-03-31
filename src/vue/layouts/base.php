@@ -51,6 +51,7 @@ $nuber = 3;
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 <script>
+  <?php include '../src/assets/js/tailwind.js' ?>
   <?php include '../src/assets/js/app.js' ?>
 </script>
 
