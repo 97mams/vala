@@ -3,7 +3,6 @@
 namespace App\model;
 
 use App\config\ConnextionBdd;
-use Error;
 use PDOStatement;
 
 class AnimalModel
